@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="authority" namespace="/" extends="struts-default">  
+		<!-- 定义一个拦截器 -->  
+        <interceptors>  
+            <interceptor name="authority"  
+                class="com.xu.interceptor.LoginInterceptor">  
+            </interceptor>  
+            <!-- 拦截器栈 -->  
+            <interceptor-stack name="mydefault">
+            	<interceptor-ref name="authority" />   
+                <interceptor-ref name="defaultStack" />                 
+            </interceptor-stack>  
+        </interceptors>  
+  
+        <!-- 定义全局Result -->  
+        <global-results>  
+            <!-- 当返回login视图名时，转入/login.jsp页面 -->  
+            <result name="login" type="redirect">/Admin/login.jsp</result>  
+        </global-results>  
+        
+		<action name="showAction" class="com.xu.action.ShowAction">  
+            <result name="success">/Admin/main.jsp</result>  
+            <!-- 使用此拦截器 -->  
+            <interceptor-ref name="mydefault" />  
+        </action> 
+        
+        <!-- 此处的class的内容要与Spring配置文件中的bean的id相同 -->
+		<action name="LoginAction" class="loginServer">
+			<result name="success">/Admin/main.jsp</result>
+			<result name="input">/Admin/login.jsp</result>
+		</action>
+	
+		<action name="RegAction" class="regServer">
+			<result name="success">/Admin/main.jsp</result>
+			<result name="input">/Admin/register.jsp</result>
+			<result name="error">/Admin/register.jsp</result>
+		</action>
+		
+		<action name="AdminNewSavingAccountAction" class="adminNewAccountServer">
+			<result name="success">/Admin/openingsuccess.jsp</result>
+			<result name="input">/Admin/opening.jsp</result>
+			<result name="error">/Admin/opening.jsp</result>
+		</action>
+		
+		<action name="InquiryAction" class="inquiryServer">
+			<result name="success">/Admin/inquirysuccess.jsp</result>
+			<result name="input">/Admin/inquiry.jsp</result>
+			<result name="error">/Admin/inquiry.jsp</result>
+		</action>
+		
+		<action name="DepositAction" class="depositServer">
+			<result name="success">/Admin/depositsuccess.jsp</result>
+			<result name="input">/Admin/deposit.jsp</result>
+			<result name="error">/Admin/deposit.jsp</result>
+		</action>
+		
+		<action name="WithdrawAction" class="withdrawServer">
+			<result name="success">/Admin/withdrawalsuccess.jsp</result>
+			<result name="input">/Admin/withdrawal.jsp</result>
+			<result name="error">/Admin/withdrawal.jsp</result>
+		</action>
+	</package>			
+		
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<!--设置修改配置文件后不用重启服务器就生效 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+</struts>

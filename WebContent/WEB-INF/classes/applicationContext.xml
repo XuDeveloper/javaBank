@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 指定连接数据库的URL -->
+		<property name="url" value="jdbc:mysql://localhost:3306/javabank" />
+		<!-- 指定连接数据库的用户名 -->
+		<property name="username" value="root" />
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="root" />
+	</bean>
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.autocommit">true </prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="sql_format">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<!-- 指定hibernate映射文件 -->
+			<list>				
+				<value>com/xu/entity/AdminUser.hbm.xml</value>
+				<value>com/xu/entity/Customer.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Dao配置 -->
+	<bean id="regDao" class="com.xu.dao.impl.RegDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="loginDao" class="com.xu.dao.impl.LoginDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="adminNewSavingAccountDao" class="com.xu.dao.impl.AdminNewSavingAccountDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="inquiryDao" class="com.xu.dao.impl.InquiryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="depositDao" class="com.xu.dao.impl.DepositDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="withdrawDao" class="com.xu.dao.impl.WithdrawDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- Service配置 -->
+	<bean id="loginService" class="com.xu.service.impl.LoginServiceImpl">
+		<property name="loginDao" ref="loginDao"></property>
+	</bean>
+	
+	<bean id="regService" class="com.xu.service.impl.RegServiceImpl">
+		<property name="regDao" ref="regDao"></property>
+	</bean>
+	
+	<bean id="adminNewAccountService" class="com.xu.service.impl.AdminNewSavingAccountServiceImpl">
+		<property name="adminNewSavingAccountDao" ref="adminNewSavingAccountDao"></property>
+	</bean>
+	
+	<bean id="inquiryService" class="com.xu.service.impl.InquiryServiceImpl">
+		<property name="inquiryDao" ref="inquiryDao"></property>
+	</bean>
+	
+	<bean id="depositService" class="com.xu.service.impl.DepositServiceImpl">
+		<property name="depositDao" ref="depositDao"></property>
+	</bean>
+	
+	<bean id="withdrawService" class="com.xu.service.impl.WithdrawServiceImpl">
+		<property name="withdrawDao" ref="withdrawDao"></property>
+	</bean>
+	
+	<!-- Action设置 -->
+	<bean id="regServer" class="com.xu.action.RegAction" scope="prototype">
+		<property name="regService" ref="regService"></property>
+	</bean>
+	<bean id="loginServer" class="com.xu.action.LoginAction" scope="prototype">
+		<property name="loginService" ref="loginService"></property>
+	</bean>
+	<bean id="adminNewAccountServer" class="com.xu.action.AdminNewSavingAccountAction" scope="prototype">
+		<property name="adminNewSavingAccountService" ref="adminNewAccountService"></property>
+	</bean>	
+	<bean id="inquiryServer" class="com.xu.action.InquiryAction" scope="prototype">
+		<property name="inquiryService" ref="inquiryService"></property>
+	</bean>
+	<bean id="depositServer" class="com.xu.action.DepositAction" scope="prototype">
+		<property name="depositService" ref="depositService"></property>
+	</bean>
+	<bean id="withdrawServer" class="com.xu.action.WithdrawAction" scope="prototype">
+		<property name="withdrawService" ref="withdrawService"></property>
+	</bean>
+	
+</beans>
