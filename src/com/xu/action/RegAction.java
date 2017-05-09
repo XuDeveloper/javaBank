@@ -86,7 +86,7 @@ public class RegAction extends ActionSupport implements SessionAware {
 		user.setAd_pass(Md5Util.getMd5(ad_pass));
 		user.setAd_sucode(ad_sucode);
 		Result result = regService.add(user);
-		if (result.getStatus().equals("success")) {
+		if (result.getStatus() == Result.SUCCESS) {
 			user = (AdminUser) result.getResponse();
 			this.session.put("ad_account", user);
 			return SUCCESS;

@@ -15,12 +15,12 @@ public class RegDaoImpl extends HibernateDaoSupport implements RegDao {
 		Result result = new Result();
 		try {
 			getHibernateTemplate().save(user);
-			result.setStatus("success");
+			result.setStatus(Result.SUCCESS);
 			result.setResponse(user);
 			return result;
 		} catch (Exception e) {
 			// TODO: handle exception
-			result.setStatus("error");
+			result.setStatus(Result.ERROR);
 			result.setResponse("the account name exists");
 			return result;
 		}

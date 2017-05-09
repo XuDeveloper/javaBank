@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.53)
-# Date: 2017-05-09 11:39:54
+# Date: 2017-05-09 11:45:52
 # Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES utf8 */;
@@ -41,7 +41,8 @@ CREATE TABLE `customer` (
   `cardNum` varchar(16) NOT NULL DEFAULT '',
   `accountStatus` text NOT NULL,
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `cu_id` (`cu_id`)
+  UNIQUE KEY `cu_id` (`cu_id`),
+  UNIQUE KEY `cu_PIN` (`accountNum`,`cardNum`,`cu_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=123123124 DEFAULT CHARSET=utf8;
 
 #

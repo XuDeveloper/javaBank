@@ -18,7 +18,7 @@ public class WithdrawDaoImpl extends HibernateDaoSupport implements WithdrawDao 
 		List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer c where c.accountNum=?",
 				accountNum);
 		if (customers.size() != 1) {
-			result.setStatus("error");
+			result.setStatus(Result.ERROR);
 			result.setResponse("can not find customer");
 			return result;
 		}
@@ -27,7 +27,7 @@ public class WithdrawDaoImpl extends HibernateDaoSupport implements WithdrawDao 
 		System.out.println("ori:" + ori.intValue());
 		System.out.println("balance:" + balance.intValue());
 		if (ori - balance < 0) {
-			result.setStatus("error");
+			result.setStatus(Result.ERROR);
 			result.setResponse("not sufficient balance");
 			return result;
 		}
@@ -36,11 +36,11 @@ public class WithdrawDaoImpl extends HibernateDaoSupport implements WithdrawDao 
 			this.getHibernateTemplate().update(customer); 
 		} catch (Exception e) {
 			// TODO: handle exception
-			result.setStatus("error");
+			result.setStatus(Result.ERROR);
 			result.setResponse("can not withdraw");
 			return result;
 		}
-		result.setStatus("success");
+		result.setStatus(Result.SUCCESS);
 		result.setResponse("");
 		return result;
 	}

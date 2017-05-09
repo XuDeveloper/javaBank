@@ -72,7 +72,7 @@ public class WithdrawAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 		Result result = withdrawService.withdraw(accountNum, withdrawAmount);
-		if (result.getStatus().equals("success")) {
+		if (result.getStatus() == Result.SUCCESS) {
 			return SUCCESS;
 		} else {
 			if (result.getResponse().equals("can not withdraw")) {

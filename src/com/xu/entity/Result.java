@@ -5,8 +5,12 @@ import java.io.Serializable;
 public class Result implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public static final int SUCCESS = 1;
+	
+	public static final int ERROR = 0;
 
-    private String status;
+    private int status;
 
     private Object response;
 
@@ -18,11 +22,11 @@ public class Result implements Serializable {
         this.response = response;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

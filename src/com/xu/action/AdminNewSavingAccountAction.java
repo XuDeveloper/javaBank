@@ -4,6 +4,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.xu.entity.Customer;
+import com.xu.entity.Result;
 import com.xu.service.AdminNewSavingAccountService;
 
 public class AdminNewSavingAccountAction extends ActionSupport {
@@ -86,15 +87,20 @@ public class AdminNewSavingAccountAction extends ActionSupport {
 			this.addFieldError("error.err", "The PIN is the same!");
 			return ERROR;
 		}
-		this.customer = adminNewSavingAccountService.createNewSavingAccount(cu_id, cu_name, cu_PIN);
-		if (customer != null) {
-			// ActionContext ct = ActionContext.getContext();
-			// ct.put("new_account", customer);
-			ServletActionContext.getRequest().setAttribute("new_customer", customer);
-			// System.out.println("customer:" + this.customer.getAccountNum());
-			return SUCCESS;
-		}
-		this.addFieldError("error.err", "Open error, please input another id!");
+		Result result = adminNewSavingAccountService.createNewSavingAccount(cu_id, cu_name, cu_PIN);
+		if (result.getStatus() == Result.SUCCESS) {
+			this.customer = (Customer) result.getResponse();
+			if (customer != null) {
+				// ActionContext ct = ActionContext.getContext();
+				// ct.put("new_account", customer);
+				ServletActionContext.getRequest().setAttribute("new_customer", customer);
+				// System.out.println("customer:" + this.customer.getAccountNum());
+				return SUCCESS;
+			}
+		} else {
+			this.addFieldError("error.err", "Open error, please input another id!");
+			return ERROR;
+		}		
 		return ERROR;
 	}
 }
