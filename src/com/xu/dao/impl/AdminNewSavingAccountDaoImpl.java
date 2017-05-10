@@ -5,6 +5,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.xu.dao.AdminNewSavingAccountDao;
 import com.xu.entity.Customer;
 import com.xu.entity.Result;
+import com.xu.util.NumUtil;
 
 public class AdminNewSavingAccountDaoImpl extends HibernateDaoSupport implements AdminNewSavingAccountDao {
 
@@ -17,8 +18,8 @@ public class AdminNewSavingAccountDaoImpl extends HibernateDaoSupport implements
 		customer.setCu_name(cu_name);
 		customer.setCu_PIN(cu_PIN);
 		customer.setBalance(0);
-		customer.setAccountNum("11111112222222");
-		customer.setCardNum("1111111222222233");
+		customer.setAccountNum(NumUtil.getRandomAccountNum());
+		customer.setCardNum(NumUtil.getRandomCardNum());
 		// “Normal”, “Locked”, “Not activated”, “Not Available” 
 		customer.setAccountStatus("Not Available");
 		try {
