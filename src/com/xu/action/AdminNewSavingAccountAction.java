@@ -84,7 +84,7 @@ public class AdminNewSavingAccountAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		if (!cu_PIN_repeat.equals(cu_PIN)) {
-			this.addFieldError("error.err", "The PIN is the same!");
+			this.addFieldError("error.err", "The PIN should be the same!");
 			return ERROR;
 		}
 		Result result = adminNewSavingAccountService.createNewSavingAccount(cu_id, cu_name, cu_PIN);
