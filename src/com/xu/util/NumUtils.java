@@ -2,9 +2,9 @@ package com.xu.util;
 
 import java.util.Random;
 
-public class NumUtil {
+public class NumUtils {
 
-	private NumUtil() {
+	private NumUtils() {
 
 	}
 

@@ -7,7 +7,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.xu.dao.LoginDao;
 import com.xu.entity.AdminUser;
-import com.xu.util.Md5Util;
+import com.xu.util.Md5Utils;
 
 public class LoginDaoImpl extends HibernateDaoSupport implements LoginDao {
 
@@ -16,7 +16,7 @@ public class LoginDaoImpl extends HibernateDaoSupport implements LoginDao {
 		// TODO Auto-generated method stub
 		String hql = "from AdminUser u where u.ad_account=? and u.ad_pass=?";
 		List<AdminUser> list = (List<AdminUser>) getHibernateTemplate().find(hql,
-				new String[] { ad_account, Md5Util.getMd5(ad_pass) });
+				new String[] { ad_account, Md5Utils.getMd5(ad_pass) });
 		if (list.size() != 1) {
 			return null;
 		}

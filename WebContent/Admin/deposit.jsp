@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="../Public/header.jsp"></jsp:include>
+<jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <script type="text/javascript"> 
                 function confirm(){   

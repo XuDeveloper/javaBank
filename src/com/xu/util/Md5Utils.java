@@ -3,7 +3,7 @@ package com.xu.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Md5Util {
+public class Md5Utils {
 
 	// 静态方法，便于作为工具类
 	public static String getMd5(String plainText) {

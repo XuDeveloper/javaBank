@@ -15,7 +15,7 @@
 	</listener>
 
 	<welcome-file-list>
-		<welcome-file>/Admin/login.jsp</welcome-file>
+		<welcome-file>/User/login.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- 配置Struts -->
 	<filter>
@@ -41,6 +41,5 @@
         <param-name>log4jRefreshInterval</param-name>    
         <param-value>600000</param-value>    
     </context-param>  
-	
-
+    
 </web-app>

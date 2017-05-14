@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xu.entity.AdminUser;
 import com.xu.entity.Result;
 import com.xu.service.RegService;
-import com.xu.util.Md5Util;
+import com.xu.util.Md5Utils;
 
 public class RegAction extends ActionSupport implements SessionAware {
 	/**
@@ -83,7 +83,7 @@ public class RegAction extends ActionSupport implements SessionAware {
 		System.out.println("ad_account:" + ad_account);
 		AdminUser user = new AdminUser();
 		user.setAd_account(ad_account);
-		user.setAd_pass(Md5Util.getMd5(ad_pass));
+		user.setAd_pass(Md5Utils.getMd5(ad_pass));
 		user.setAd_sucode(ad_sucode);
 		Result result = regService.add(user);
 		if (result.getStatus() == Result.SUCCESS) {

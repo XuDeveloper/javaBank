@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<jsp:include page="../Public/header.jsp"></jsp:include>
+<jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <!DOCTYPE html>
 <div class="header">
 	<ul class="headermenu">
