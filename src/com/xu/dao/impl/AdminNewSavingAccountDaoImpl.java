@@ -1,5 +1,8 @@
 package com.xu.dao.impl;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.xu.dao.AdminNewSavingAccountDao;

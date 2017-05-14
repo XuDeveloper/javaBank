@@ -2,11 +2,35 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+
 <script type="text/javascript">
-	function Submit() {
-		//document.getElementById('1').style.display = "none";
-		//document.getElementById('2').style.display = "";
-	}
+            $(document).ready(function(e) {
+            $('a#confirm').click(function() {      
+               if( $("#text").val()==''){
+                    modal({                        
+                   type: 'confirm',
+                   title: 'Confirm',
+                   text: '<h4>The banlance is empty,Are you sure you want to delete your account?</h4>',
+                   callback: function(result) {
+                      if(result==false){                    	 
+                      }
+                      else{
+                    	  window.open('main.jsp','_self') 
+                      }
+                   }
+                 });
+                 }
+               else{
+                   modal({
+               type: 'alert',
+               title: 'Confirm',
+               text: '<h4> account has outstanding balance '+ $("#text").val()+'<p> you cannot delete</h4>'
+           });                                  
+      }
+     
+    });
+});
+
 </script>
 
 <div class="header">
@@ -53,12 +77,18 @@
 						id="custname" align="absmiddle">
 						<s:property value="#request.search_customer.cu_name"/>
 						</text>  </td> </tr>
+						
+                 <tr>     <td align="right"><h4> Banlance:</h4></td>
+                           <td align="left"><input type="text" id="text" value=""/>  </td> </tr>
+												
                  <tr>     <td align="right"><h4>Online Banking Account Status:</h4></td>
                            <td align="left"><text
 						id="status" align="absmiddle">
 						<s:property value="#request.search_customer.accountStatus"/>
 						</text>  </td> </tr>
-                 <tr>   <td></td> 
+						
+                 <tr>    <td align="right"> <a href="#" id="confirm"><input type="button" value="close" size="80"
+						 style="background-color: #32415a; border-radius: 3px; width: 70px; margin: 0px auto; border: none; height: 30px; color: #fff;"/></a></td> 
                           <td align="left"><input type="button" value="Return" size="80"
 						style="background-color: #32415a; border-radius: 3px; width: 70px; margin: 0px auto; border: none; height: 30px; color: #fff;"
 						onClick="window.open('main.jsp','_self')" /></td>

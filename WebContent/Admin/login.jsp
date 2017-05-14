@@ -32,13 +32,13 @@
 			<form id="login" action="LoginAction" method="post">
 				<div class="username">
 					<div class="usernameinner">
-						<input type="text" id="username" value="" name="ad_account"
+						<input type="text" id="username" value="" name="ad_account" style='text-font:14px '
 							onfocus="javascript:if(this.value=='username')this.value='';" />
 					</div>
 				</div>
 				<div class="password">
 					<div class="passwordinner">
-						<input type="password" id="password" value="" name="ad_pass"
+						<input type="password" id="password" value="" name="ad_pass" 
 							onfocus="javascript:if(this.value=='password')this.value='';" />
 					</div>
 				</div>

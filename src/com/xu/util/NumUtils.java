@@ -26,7 +26,7 @@ public class NumUtils {
 		StringBuffer card = new StringBuffer();
 		int max = 9;
 		int min = 1;
-		int c = random.nextInt(max) % (max - min + 1) + min; // 确保卡号首位不为零且两个号码首位不一定相同
+		int c = random.nextInt(max) % (max - min + 1) + min; 
 		card.append(String.valueOf(c));
 		for (int i = 0; i < 15; i++) {
 			card.append(random.nextInt(10));

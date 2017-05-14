@@ -12,6 +12,21 @@
         </ul>
      
     </div><!--header-->
+    
+    
+    
+		<div class="vernav2 iconmenu">
+			<ul>
+				<li><a href="" class="editor">Change PIN</a></li>
+				<li><a href="" class="elements">item2</a></li>
+				<li><a href="" class="widgets">Item3</a></li>
+				<li><a href="" class="calendar">Item4</a></li>
+			</ul>
+			
+		
+		</div>
+		
+		
     <div class="centercontent"> 
         <div id="contentwrapper" class="contentwrapper">      
             <form action="" method="post">
@@ -19,6 +34,7 @@
             </form> 
 	</div><!-- centercontent -->    
     </div><!--bodywrapper-->
+    
 
 </body>
 </html>

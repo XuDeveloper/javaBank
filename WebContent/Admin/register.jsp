@@ -74,12 +74,7 @@
 					</div>
 				</div>
 
-				<!-- <div class="mail">
-					<div class="mailinner">
-						<input type="text" id="mail" value="mail"
-							onfocus="javascript:if(this.value=='mail')this.value='';" />
-					</div>
-				</div> -->
+
 
 				<div class="phone">
 					<div class="phoneinner">

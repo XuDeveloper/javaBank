@@ -421,7 +421,7 @@ body.withmenucoll2 { background-position: 35px 0; } /* with menu style 2 in coll
 .vernav ul li.current ul li a:hover { color: #666; }
 .vernav ul li.current ul li.current a { color: #fb9337; background-color: #fff; }
 
-.vernav2 { width: 230px; position: absolute; left: 0; top: 159px; }
+.vernav2 { width: 200px; height:50%; position: absolute; left: 0; top: 159px;  border-right: 1px solid  #eee;}
 .vernav2 ul { list-style: none; margin: 0; }
 .vernav2 ul li { display: block; border-bottom: 1px solid #eee; position: relative; }
 .vernav2 ul li a { 
@@ -527,10 +527,7 @@ body.withmenucoll2 { background-position: 35px 0; } /* with menu style 2 in coll
 
 
 
-.togglemenu { 
-	border-left: 1px solid #ddd; border-right: 1px solid #ddd; display: block; height: 21px; cursor: pointer;
-	background: url(../images/menucollapsed.png) no-repeat center 0; margin: 10px;
-}
+
 .togglemenu_collapsed { background-position: center -21px; margin: 10px 5px; border-width: 0; }
 
 .vernav .togglemenu { margin: 10px; }
@@ -2135,15 +2132,7 @@ blockquote.bq2 {
 		text-transform: uppercase;
 	}
 	.menucoll2 ul li.current ul span { color: #FB9337; }
-	
-	
-	
-	.togglemenu { 
-		border-left: 1px solid #ddd; border-right: 1px solid #ddd; display: block; height: 21px; cursor: pointer;
-		background: url(../images/menucollapsed.png) no-repeat center 0; margin: 10px;
-	}
-	.togglemenu_collapsed { background-position: center -21px; margin: 10px 5px; border-width: 0; }
-	
+
 	.vernav .togglemenu { margin: 10px; }
 	.vernav .togglemenu_collapsed { width: 35px; margin: 10px auto; border-width: 1px; }
 

@@ -9,7 +9,17 @@
 <title>page</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/Public/css/style.default.css"
+	type="text/css" />	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.css"
 	type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-xenon.css"
+	type="text/css" />		
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-atlant.css"
+	type="text/css" />	
+					
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/Public/js/plugins/jquery-1.7.min.js"></script>
 <script type="text/javascript"
@@ -28,6 +38,17 @@
 	src="${pageContext.request.contextPath}/Public/js/custom/general.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/Public/js/custom/dashboard.js"></script>
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/html5.js"></script>
+	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery-latest.min.js"></script>	
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.modal.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.model.min.js"></script>
+	
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/plugins/excanvas.min.js"></script><![endif]-->
 <!--[if IE 9]>
     <link rel="stylesheet" media="screen" href="css/style.ie9.css"/>
@@ -86,19 +107,7 @@
 		</div>
 		<!--topheader-->
 
-		<div class="vernav2 iconmenu">
-			<ul>
-				<li><a href="" class="editor">Item1</a></li>
-				<li><a href="" class="elements">item2</a></li>
-				<li><a href="" class="widgets">Item3</a></li>
-				<li><a href="" class="calendar">Item4</a></li>
 
-
-			</ul>
-			<a class="togglemenu"></a> <br />
-			<br />
-		</div>
-		<!--leftmenu-->
 	</div>
 </body>
 </html>
