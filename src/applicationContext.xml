@@ -13,7 +13,7 @@
 		<!-- 指定连接数据库的用户名 -->
 		<property name="username" value="root" />
 		<!-- 指定连接数据库的密码 -->
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean>
 	<!-- 配置SessionFactory -->
 	<bean id="sessionFactory"
@@ -66,6 +66,18 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="userLoginDao" class="com.xu.dao.impl.UserLoginDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userRegDao" class="com.xu.dao.impl.UserRegDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="activateDao" class="com.xu.dao.impl.ActivateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<!-- Service配置 -->
 	<bean id="loginService" class="com.xu.service.impl.LoginServiceImpl">
 		<property name="loginDao" ref="loginDao"></property>
@@ -91,6 +103,18 @@
 		<property name="withdrawDao" ref="withdrawDao"></property>
 	</bean>
 	
+	<bean id="userLoginService" class="com.xu.service.impl.UserLoginServiceImpl">
+		<property name="userLoginDao" ref="userLoginDao"></property>
+	</bean>
+	
+	<bean id="userRegService" class="com.xu.service.impl.UserRegServiceImpl">
+		<property name="userRegDao" ref="userRegDao"></property>
+	</bean>
+	
+	<bean id="activateService" class="com.xu.service.impl.ActivateServiceImpl">
+		<property name="activateDao" ref="activateDao"></property>
+	</bean>
+	
 	<!-- Action设置 -->
 	<bean id="regServer" class="com.xu.action.RegAction" scope="prototype">
 		<property name="regService" ref="regService"></property>
@@ -109,6 +133,15 @@
 	</bean>
 	<bean id="withdrawServer" class="com.xu.action.WithdrawAction" scope="prototype">
 		<property name="withdrawService" ref="withdrawService"></property>
+	</bean>
+	<bean id="userLoginServer" class="com.xu.action.UserLoginAction" scope="prototype">
+		<property name="userLoginService" ref="userLoginService"></property>
+	</bean>
+	<bean id="userRegServer" class="com.xu.action.UserRegAction" scope="prototype">
+		<property name="userRegService" ref="userRegService"></property>
+	</bean>
+	<bean id="activateServer" class="com.xu.action.ActivateAction" scope="prototype">
+		<property name="activateService" ref="activateService"></property>
 	</bean>
 	
 </beans>

@@ -8,7 +8,7 @@
             <li data-index="rs-10" data-transition="fade" data-slotamount="7" class="bg-light"
                 data-easein="Power4.easeInOut" data-delay="5000" data-easeout="Power4.easeInOut" data-masterspeed="2000"
                 data-rotate="0" data-saveperformance="off" data-title="Love it?" data-description="">
-                <img src="images/main1.jpg" alt="systemimg" data-kenburns="off" data-bgposition="center center"
+                <img src="${pageContext.request.contextPath}/Public/images/main1.jpg" alt="systemimg" data-kenburns="off" data-bgposition="center center"
                      data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120"
                      data-rotatestart="0" data-rotateend="0" data-offsetstart="0 -500" data-bgfit="cover"
                      data-offsetend="0 500" data-bgparallax="10" class="rev-slidebg" data-no-retina>
@@ -31,7 +31,7 @@
             <li data-transition="Curtain from Middle" data-slotamount="7" data-delay="5000" data-masterspeed="600"
                 class="bg-light">
 
-                <img src="images/main3.jpg" alt="girlimg" data-bgposition="right bottom"
+                <img src="${pageContext.request.contextPath}/Public/images/main3.jpg" alt="girlimg" data-bgposition="right bottom"
                      data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
                      data-bgpositionend="left top">
                 <div class="tp-caption grey_heavy_72 sfb tp-resizeme" data-x="center"
@@ -53,7 +53,7 @@
             <li data-index="rs-82" data-transition="fade" data-slotamount="7" data-masterspeed="500" data-delay="5000"
                 data-saveperformance="on"
                 data-title="Intro Slide" data-bgfit="cover">
-                <img src="images/main2.jpg" alt="girlimg" data-bgposition="right bottom"
+                <img src="${pageContext.request.contextPath}/Public/images/main2.jpg" alt="girlimg" data-bgposition="right bottom"
                      data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
                      data-bgpositionend="left top">
 

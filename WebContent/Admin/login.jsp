@@ -32,7 +32,7 @@
 			<form id="login" action="LoginAction" method="post">
 				<div class="username">
 					<div class="usernameinner">
-						<input type="text" id="username" value="" name="ad_account" style='text-font:14px '
+						<input type="text" id="username" value="" name="ad_account" style="text-font:22px "
 							onfocus="javascript:if(this.value=='username')this.value='';" />
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 							onfocus="javascript:if(this.value=='password')this.value='';" />
 					</div>
 				</div>
-				<button type="submit">Login</button>
+				<button type="submit"><h3>Login</h3></button>
 				<p>
                 <div align="right">
                 <span class="slogan"><h3><a href="${pageContext.request.contextPath}/Admin/register.jsp">Register>></h3></span>

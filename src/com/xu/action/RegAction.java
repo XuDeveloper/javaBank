@@ -80,7 +80,6 @@ public class RegAction extends ActionSupport implements SessionAware {
 			this.addFieldError("error.err", "The password isn't equal to the repeat password!");
 			return ERROR;
 		}
-		System.out.println("ad_account:" + ad_account);
 		AdminUser user = new AdminUser();
 		user.setAd_account(ad_account);
 		user.setAd_pass(Md5Utils.getMd5(ad_pass));

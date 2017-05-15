@@ -2,18 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<script type="text/javascript">
-	function Submit() {
-		//var s = <s:property value="customer"/>;
-		//alert("123" + s);
-		//if(s != null) {
-		//alert("Submit Successfully!");
-		//document.getElementById('1').style.display = "none";
-		//document.getElementById('2').style.display = "";
-		//}
-
-	}
-</script>
 
 <div class="header">
 	<ul class="headermenu">
@@ -33,54 +21,25 @@
 				class="icon icon-chart"></span>Withdrawal</a></li>
 	</ul>
 </div>
-<!--header-->
 
 <div class="centercontent">
 	<div id="contentwrapper" class="contentwrapper">
-		<!-- <form action="AdminNewSavingAccountAction" method="post" id="1">
-			<p>
-				<table cellpadding="12px" cellspacing="12" width=60% height=20%>
-                      <tr>
-					<td align="right"><h4> Customer’s name:</h4> </td>
-                              <td align="left"><input type="text"
-						id="custName" align="absmiddle" name="cu_name"/></td>
-				</tr>
-                      <tr>  <td align="right"><h4> ID number:</h4></td>
-                             <td align="left"><input type="text"
-						id="custID" align="absmiddle" name="cu_id"/></td>
-				</tr>
-                       <tr>   <td align="right"> <h4> Saving account PIN:</h4></td>
-                               <td align="left"> <input type="text"
-						id="accountPIN1" align="absmiddle" name="cu_PIN" /> </td>
-				</tr>
-                        <tr>     <td align="right"><h4> Confirm PIN:</h4></td>
-                                <td align="left"><input type="text"
-						id="accountPIN2" align="absmiddle" name="cu_PIN_repeat"/>  </td> </tr>
-                        <tr>   <td></td> 
-                               <td align="left"><button
-						type="submit" onclick="Submit()" size="80">Submit</button></td>
-				</tr>
-                  </table>
-             </form>   -->
+	
 		<form action="main.jsp" method="post">
 			<center>
                <font size="5" color="red">Open Success!</font>
             </center>
-			<table id="2" cellpadding="20px" cellspacing="12" width=60%
-				height=90%>
+            
+			<table cellpadding="16px" cellspacing="16" width=60% height=10%>
 				<tr>
 					<td align="right">
-						<h4>Saving account number:</h4>
+						<h3>Saving account number:</h3>
 					</td>
-					<td align="left"><text id="accountPIN1" align="absmiddle"
-							height="60px" width="20px"> <s:property
-							value="#request.new_customer.accountNum" /> </text></td>
+					<td align="left" id="account" style="font-size:24px"><s:property value="#request.new_customer.accountNum" /> </td>
 				</tr>
 				<tr>
-					<td align="right"><h4>Card number:</h4></td>
-					<td align="left"><text type="text" id="accountPIN2"
-							align="absmiddle"> <s:property
-							value="#request.new_customer.cardNum" /> </text></td>
+					<td align="right"><h3>Card number:</h3></td>
+					<td align="left" style=" font-size:24px;" id="card"> <s:property value="#request.new_customer.cardNum" /> </text></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -94,6 +53,21 @@
 	<!-- centercontent -->
 </div>
 <!--bodywrapper-->
+
+ <script >
+ window.onload =function() {        
+         
+         var td2 = document.getElementById("account").innerHTML;                  
+         var str2=td2.replace(/(\d{4})/g,'$1  ').replace(/\s*$/,'');        
+         document.getElementById("account").innerHTML=str2;         
+         
+         var td3 = document.getElementById("card").innerHTML;                  
+         var str3=td3.replace(/(\d{4})/g,'$1  ').replace(/\s*$/,'');        
+         document.getElementById("card").innerHTML=str3;  
+  };  
+
+ </script>   
+
 
 </body>
 </html>

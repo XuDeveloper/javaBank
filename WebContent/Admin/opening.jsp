@@ -3,16 +3,11 @@
 <jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <script type="text/javascript">
-	function Submit() {
-		//var s = <s:property value="customer"/>;
-		//alert("123" + s);
-		//if(s != null) {
-			//alert("Submit Successfully!");
-			//document.getElementById('1').style.display = "none";
-			//document.getElementById('2').style.display = "";
-		//}
-		
-	}
+window.onload =function() {  
+    document.getElementById("custID").onkeyup =function() {  
+        this.value =this.value.replace(/\s/g,'').replace(/(\d{4})(?=\d)/g,"$1 ");;  
+    };    
+};  	
 </script>
 
 <div class="header">
@@ -31,6 +26,7 @@
 		<li><a
 			href="${pageContext.request.contextPath}/Admin/withdrawal.jsp"><span
 				class="icon icon-chart"></span>Withdrawal</a></li>
+		 <li><a href="${pageContext.request.contextPath}/Admin/changepin.jsp"><span class="icon icon-pin"></span>Change PIN</a></li> 
 	</ul>
 </div>
 <!--header-->
@@ -39,7 +35,7 @@
 	<div id="contentwrapper" class="contentwrapper">
 		<form action="AdminNewSavingAccountAction" method="post">
 			<p>
-				<table cellpadding="12px" cellspacing="12" width=60% height=20%>
+				<table  cellpadding="16px" cellspacing="16" width=60% height=10%>
 				<tr>
 				    <td></td> 
 					<td align="left">
@@ -49,24 +45,23 @@
 					</td>
 				</tr>
                       <tr>
-					<td align="right"><h4> Customer’s name:</h4> </td>
+					<td align="right"><h3> Customer’s name:</h3> </td>
                               <td align="left"><input type="text"
-						id="custName" align="absmiddle" name="cu_name"/></td>
+						id="custName" align="absmiddle" name="cu_name" style=" width:100%;  font-size:24px;MaxLenth:1"/></td>
 				</tr>
-                      <tr>  <td align="right"><h4> ID number:</h4></td>
+                      <tr>  <td align="right"><h3> ID number:</h3></td>
                              <td align="left"><input type="text"
-						id="custID" align="absmiddle" name="cu_id"/></td>
+						id="custID" align="absmiddle" name="cu_id" style=" width:100%;  font-size:24px;"/></td>
 				</tr>
-                       <tr>   <td align="right"> <h4> Saving account PIN:</h4></td>
+                       <tr>   <td align="right"> <h3> Saving account PIN:</h3></td>
                                <td align="left"> <input type="text"
-						id="accountPIN1" align="absmiddle" name="cu_PIN" /> </td>
+						id="accountPIN1" align="absmiddle" name="cu_PIN" style=" width:100%;  font-size:24px;"/> </td>
 				</tr>
-                        <tr>     <td align="right"><h4> Confirm PIN:</h4></td>
+                        <tr>     <td align="right"><h3> Confirm PIN:</h3></td>
                                 <td align="left"><input type="text"
-						id="accountPIN2" align="absmiddle" name="cu_PIN_repeat"/>  </td> </tr>
+						id="accountPIN2" align="absmiddle" name="cu_PIN_repeat" style=" width:100%;  font-size:24px;"/>  </td> </tr>
                         <tr>   <td></td> 
-                               <td align="left"><input
-						type="submit" onclick="Submit()" size="80" value="Submit"></td>
+                               <td align="left"><input type="submit"  size="80" value="Submit" style=" font-size:16px;"> </td>
 				</tr>
                   </table>
              </form>  

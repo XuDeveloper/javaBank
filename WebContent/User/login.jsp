@@ -22,11 +22,37 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/custom.css">
 </head>   
      <script type="text/javascript" > 
-      function SubmitForm(){ 
-        if(Validate()){ 
-            alert("Please remember your password."); 
-              window.open('login.jsp','_self');
+     var isValidate = false;
+     function onLoad() {
+         var loginmsg="${requestScope.login_message}";
+         var regmsg="${requestScope.reg_message}";
+         if(loginmsg!=""){
+         	alert(loginmsg);
+         }
+         if(regmsg!="") {
+        	alert(regmsg);
+         }
+     }
+     
+     function loginForm() {
+    	 var cu_name= document.getElementById("cu_name");
+         var cu_pwd= document.getElementById("cu_pwd"); 
+         if(cu_name.value == '') {
+        	 alert('Please input account name first!');
+        	 return false;
+         }
+         if(cu_pwd.value == '') {
+        	 alert('Please input password first!');
+        	 return false;
+         }
+         return true;
+     }
+      function RegForm(){ 
+          if(Validate()){ 
+            //alert("Please remember your password."); 
+            return true;
           } 
+          return false;
         } 
     function Validate(){ 
         var b= document.getElementById("password1").value;
@@ -36,7 +62,7 @@
             return false; 
         } 
         if(checkPass(b)<3){ 
-            alert("The complexity of the new password is no enough,it should include the capital capital and small letter、 small letter and number ！");   
+            alert("The password should be at least 6 characters and contains a mixture of lower and upper case letter and digit ！");   
             return false ;   
         } 
         if(b!=c.value){ 
@@ -66,7 +92,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
 } 
 </script>
 
-<body background="${pageContext.request.contextPath}/Public/images/bg.jpg">
+<body background="${pageContext.request.contextPath}/Public/images/bg.jpg" onload="onLoad()">
 <div class="tp-header">
     <div class="container">
         <div class="row">
@@ -101,26 +127,26 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
             <div class="modal-body">
                 <div id="myTabContent" class="tab-content">
                     <div class=" signin tab-pane fade active in" id="signin">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="UserLoginAction" method="post" onsubmit="return loginForm()">
                             <fieldset>
                                 <div class="control-group section-top-10">
-                                    <label class="control-label" for="userid"> <img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp;User ID :</label>
+                                    <label class="control-label" for="userid"> <img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp;Banking Account :</label>
                                     <div class="controls">
-                                         <input id="cu_id" name="userid" class="form-control input-large" type="text"
-                                               placeholder="ID" required style="font-size:23px">
+                                         <input id="cu_name" name="cu_name" class="form-control input-large" type="text"
+                                               placeholder="ID" style="font-size:23px">
                                     </div>
                                 </div>
                                 <div class="control-group section-top-10">
                                     <label class="control-label" for="passwordinput"><img src="${pageContext.request.contextPath}/Public/images/password.png">&nbsp;Password :</label>
                                     <div class="controls">
-                                        <input type="password" id="password" style="font-size:26px" name="passwordinput"  class="form-control input-medium" placeholder="Password" required>
+                                        <input type="password" id="cu_pwd" style="font-size:26px" name="cu_pwd"  class="form-control input-medium" placeholder="Password">
                                     </div>
                                 </div>
-                               <div  align="right"> <a href="resetpassword.jsp">forget password?</a></div>
+                               <div  align="right"> <a href="${pageContext.request.contextPath}/User/resetpassword.jsp">forget password?</a></div>
                                <br>
                                 <div class="control-group">
                                     
-                                        <button name="signin" class="btn btn-success form-control"  onClick="window.open('main.jsp','_self')">Sign In</button>
+                                        <button name="signin" class="btn btn-success form-control" type="submit">Sign In</button>
                                    
                                 </div>
                             </fieldset>
@@ -129,37 +155,37 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                     
                     
                     <div class="tab-pane fade signup" id="signup">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="UserRegAction" method="post" onsubmit="return RegForm()">
                             <fieldset>
                                 <div class="control-group section-top-10">
-                                    <label for="user"><img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp; Name
+                                    <label for="user"><img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp; Account
                                         :</label>
                                     <div class="controls">
-                                        <input id="cu_name" name="userid" class="form-control input-large" type="text"
-                                               placeholder="Name" required style="font-size:24px">
+                                        <input id="cu_name" name="cu_name" class="form-control input-large" type="text"
+                                               placeholder="Name" style="font-size:24px">
                                     </div>
                                 </div>
                                  <div class="control-group section-top-10">
                                     <label for="user"><img src="${pageContext.request.contextPath}/Public/images/code.png">&nbsp; ID
                                         :</label>
                                     <div class="controls">
-                                        <input  type="text" id="cu_id" name="ID" class="form-control input-large"  
-                                               placeholder="ID" required style="font-size:22px">
+                                        <input  type="text" id="cu_id" name="cu_id" class="form-control input-large"  
+                                               placeholder="ID" style="font-size:22px">
                                     </div>
                                 </div>
                                 <div class="control-group section-top-10">
                                     <label class="control-label" for="Email_id"><img src="${pageContext.request.contextPath}/Public/images/mail.png">&nbsp;Email :</label>
                                     <div class="controls">
-                                        <input id="eamil" name="Email" class="form-control input-large" type="email"
-                                               placeholder="abcdef@xyz.com" required style="font-size:24px">
+                                        <input id="eamil" name="cu_email" class="form-control input-large" type="email"
+                                               placeholder="abcdef@xyz.com" style="font-size:24px">
                                     </div>
                                 </div>
                                 <div class="control-group section-top-10">
                                     <label for="password"><img src="${pageContext.request.contextPath}/Public/images/password.png">&nbsp;
                                         Password :</label>
                                     <div class="controls">
-                                        <input id="password1" name="password1" class="form-control input-large"
-                                               type="text" placeholder="Password" required style="font-size:24px">
+                                        <input id="password1" name="cu_pwd" class="form-control input-large"
+                                               type="password" placeholder="Password" style="font-size:24px">
 
                                     </div>
                                 </div>
@@ -167,15 +193,15 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                                     <label class="control-label" for="reenterpassword"><img src="${pageContext.request.contextPath}/Public/images/password.png">&nbsp; Re-Enter Password :</label>
                                     <div class="controls">
                                         <input id="repeatpassword" class="form-control input-large"
-                                               name="reenterpassword" type="text" placeholder="Re Enter Password"
-                                               required="" style="font-size:24px">
+                                               name="cu_pwd_repeat" type="password" placeholder="Re Enter Password"
+                                                style="font-size:24px">
                                     </div>
                                 </div>
                                 <div class="control-group section-top-10">
                                     <label class="control-label" for="confirmsignup"></label>
                                     <div class="controls">
                                         <button id="confirmsignup" name="confirmsignup"
-                                                class="btn btn-success form-control" onclick="SubmitForm()">Sign Up
+                                                class="btn btn-success form-control" type="submit">Sign Up
                                         </button>
                                     </div>
                                 </div>

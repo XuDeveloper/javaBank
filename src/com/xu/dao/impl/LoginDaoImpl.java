@@ -2,7 +2,6 @@ package com.xu.dao.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.xu.dao.LoginDao;

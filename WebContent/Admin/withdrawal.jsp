@@ -2,16 +2,6 @@
 <jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <script type="text/javascript"> 
-                function confirm(){   
-                    // var withdrawal=document.getElementById("withdrawal");
-                    // var  accountNum=document.getElementById("accountNum");                  
-                    // if(withdrawal.value<5000&&withdrawal.value!=''&&accountNum.value!='')   {               
-                    //    window.open('withdrawalSuccess.jsp','_self');
-                   //}    
-                   //else {
-                   //    alert("Please finish the infomation!");
-                   //}
-                }   
                 function conWrite(obj){
                     if (document.getElementById(obj) != null){
                            var num =  document.getElementById(obj).value;
@@ -24,6 +14,25 @@
                             }
                       }
                   }   
+                function format(s){
+                   if(/[^0-9\.]/.test(s)) return "invalid value";
+                     s=s.replace(/^(\d*)$/,"$1.");
+                    s=(s+"00").replace(/(\d*\.\d\d)\d*/,"$1");
+                    s=s.replace(".",",");
+                    var re=/(\d)(\d{3},)/;
+                   while(re.test(s))
+                         s=s.replace(re,"$1,$2");
+                      s=s.replace(/,(\d\d)$/,".$1");
+                      return s.replace(/^\./,"0.");
+                 }    
+                
+                window.onload =function() {  
+                    document.getElementById("accountNum").onkeyup =function() {  
+                        this.value =this.value.replace(/\s/g,'').replace(/(\d{4})(?=\d)/g,"$1 ");;  
+                    };  
+                 };  
+                     
+                
 </script>
 
     <div class="header">
@@ -33,6 +42,7 @@
             <li><a href="${pageContext.request.contextPath}/Admin/inquiry.jsp"><span class="icon icon-speech"></span>Inquiry</a></li>
             <li ><a href="${pageContext.request.contextPath}/Admin/deposit.jsp"><span class="icon icon-message"></span>Deposit</a></li>
              <li class="current"><a href="${pageContext.request.contextPath}/Admin/withdrawal.jsp"><span class="icon icon-chart"></span>Withdrawal</a></li>
+            <li><a href="${pageContext.request.contextPath}/Admin/changepin.jsp"><span class="icon icon-pin"></span>Change PIN</a></li> 
         </ul>
       </div><!--header-->    
       
@@ -42,7 +52,7 @@
           
             <form action="WithdrawAction" method="post">
                 <p>
-                <table cellpadding="12px" cellspacing="12" width=60% height=10%>
+                <table cellpadding="16px" cellspacing="16" width=60% height=10%>
                 	<tr>
 				    <td></td> 
 					<td align="left">
@@ -51,14 +61,14 @@
         				</font>
 					</td>
 					</tr>
-                    <tr ><td align="right" ><h4> User account number : </h4></td>
-                         <td><input type="text" id="accountNum" align="absmiddle" name="accountNum" style="width:120; height:30" /></td></tr>
-                    <tr>  <td align="right" > <h4>Withdrawal amount:</h4></td>
-                          <td><input type="text"  align="absmiddle" name="withdrawAmount" id="withdrawal" onMouseMove= "conWrite('withdrawal')" onKeyUp="conWrite('withdrawal')"/></td></tr>                 
-                     <tr id="1" style="display :none">  <td align="right"><h4> Su code:</h4></td>
-                         <td><input type="text" id="suCode" name="ad_sucode" align="absmiddle" /></tr>      
+                    <tr ><td align="right" ><h3> User account number : </h3></td>
+                         <td><input type="text" id="accountNum" align="absmiddle" name="accountNum"  style=" width:100%;  font-size:24px;"/></td></tr>
+                    <tr>  <td align="right" > <h3>Withdrawal amount:</h3></td>
+                          <td><input type="text"  onchange="this.value=format(this.value);" align="absmiddle" name="withdrawAmount" id="withdrawal" onMouseMove= "conWrite('withdrawal')" onKeyUp="conWrite('withdrawal')"  style=" width:100%;font-size:24px;"/></td></tr>                 
+                     <tr id="1" style="display :none">  <td align="right"><h3> Authorization code:</h3></td>
+                         <td><input type="text" id="suCode" name="ad_sucode" align="absmiddle" style=" width:100%;  font-size:24px;"/></tr>      
                     <tr>  <td> </td>
-                        <td><input type="submit" value="Confirm" onclick="confirm()" /></td></tr>
+                        <td><input type="submit" value="Confirm" style=" font-size:16px;" /></td></tr>
                </table>
             </form>              
     	</div><!-- centercontent -->       

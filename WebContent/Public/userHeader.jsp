@@ -12,29 +12,29 @@
     <title>Home</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <!----------------Global css------------------->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendors/revolution-slider/css/layers.css">
-    <link rel="stylesheet" href="vendors/revolution-slider/css/navigation.css">
-    <link rel="stylesheet" href="vendors/revolution-slider/css/settings.css">
-    <link rel="stylesheet" href="vendors/imagehover/css/imagehover.min.css">
-    <link rel="stylesheet" href="vendors/animate/animate.min.css">
-    <link rel="stylesheet" href="vendors/iCheck/css/all.css">
-    <link rel="stylesheet" href="vendors/sweetalert2/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/revolution-slider/css/layers.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/revolution-slider/css/navigation.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/revolution-slider/css/settings.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/imagehover/css/imagehover.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/animate/animate.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/iCheck/css/all.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/sweetalert2/css/sweetalert2.min.css">
     <!----------------custo css----------------->
-    <link rel="stylesheet" href="css/custom.css">
-    <script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
-<script src="vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
-<script src="vendors/iCheck/js/icheck.js"></script>
-<script src="vendors/countup/js/countUp.min.js"></script>
-<script src="vendors/sweetalert2/js/sweetalert2.min.js"></script>
-<script src="vendors/jribbble/js/jribbble.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/custom.css">
+    <script src="${pageContext.request.contextPath}/Public/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/iCheck/js/icheck.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/countup/js/countUp.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/sweetalert2/js/sweetalert2.min.js"></script>
+<script src="${pageContext.request.contextPath}/Public/vendors/jribbble/js/jribbble.min.js"></script>
 <!----------------------page Level Js-------------------------->
-<script src="js/custom.js"></script>
+<script src="${pageContext.request.contextPath}/Public/js/custom.js"></script>
 </head>
-<body background="images/bg.jpg">
+<body background="${pageContext.request.contextPath}/Public/images/bg.jpg">
 
 <div class="tp-header">
     <div class="container">

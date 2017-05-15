@@ -11,11 +11,17 @@
 		<property name="cu_id" type="java.lang.String">
 			<column name="cu_id"  />
 		</property>
+		<property name="cu_pwd" type="java.lang.String">
+			<column name="cu_pwd"  />
+		</property>
 		<property name="cu_name" type="java.lang.String">
 			<column name="cu_name"  />
 		</property>
 		<property name="cu_PIN" type="java.lang.String">
 			<column name="cu_PIN"  />
+		</property>
+		<property name="cu_email" type="java.lang.String">
+			<column name="cu_email"  />
 		</property>
 		<property name="balance" type="java.lang.Integer">
 			<column name="balance" />
@@ -28,6 +34,12 @@
 		</property>
 		<property name="accountStatus" type="java.lang.String">
 			<column name="accountStatus" />
+		</property>
+		<property name="code" type="java.lang.String">
+			<column name="code" />
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="status" />
 		</property>
 	</class>
 </hibernate-mapping>

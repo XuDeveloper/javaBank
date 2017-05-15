@@ -17,6 +17,7 @@
 		<li><a
 			href="${pageContext.request.contextPath}/Admin/withdrawal.jsp"><span
 				class="icon icon-chart"></span>Withdrawal</a></li>
+		 <li><a href="${pageContext.request.contextPath}/Admin/changepin.jsp"><span class="icon icon-pin"></span>Change PIN</a></li> 
 	</ul>
 </div>
 <!--header-->  
@@ -25,9 +26,9 @@
     <div class="centercontent"> 
         <div id="contentwrapper" class="contentwrapper">
              <p>
-             <center><font size="6"> Deposit success!</font>
+             <center><font size="6"><h3>Deposit success!</h3> </font>
                  <p></p> <p>
-            <input type="button" value="Return"  size="80"  onClick="window.open('main.jsp','_self')" style="background-color:#32415a ; border-radius: 3px;width:70px;margin:0px auto; border:none; height:30px; color:#fff;"/>
+            <input type="button" value="Return"  size="80"  onClick="window.open('main.jsp','_self')"  style="background-color: #32415a; border-radius: 3px; width: 70px; margin: 0px auto; border: none; height: 30px; color: #fff; font-size:20px;"/>
             </center>
             
       </div><!-- centercontent -->       

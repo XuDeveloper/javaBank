@@ -79,7 +79,7 @@
 				<div class="phone">
 					<div class="phoneinner">
 						<input type="text" name="ad_sucode" id="phone" value=""
-							onfocus="javascript:if(this.value=='phone')this.value='';" />
+							onfocus="javascript:if(this.value=='phone')this.value='';" style="text-font:22px "/>
 					</div>
 				</div>
 				<button type="submit">

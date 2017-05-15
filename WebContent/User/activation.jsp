@@ -14,7 +14,7 @@
         <div class="col-sm-6 col-sm-offset-3 ">
         <br>
           <center>
-            <img src="images/yes.jpg" > 
+            <img src="${pageContext.request.contextPath}/Public/images/yes.jpg" > 
                <br>
             <h2> Activated Successfully~~ </h2>   
             <br>

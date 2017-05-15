@@ -1,6 +1,5 @@
 package com.xu.dao;
 
-import com.xu.entity.Customer;
 import com.xu.entity.Result;
 
 public interface AdminNewSavingAccountDao {
