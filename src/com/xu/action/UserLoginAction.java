@@ -2,14 +2,16 @@ package com.xu.action;
 
 import java.util.Map;
 
-import org.apache.struts2.ServletActionContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.xu.entity.Customer;
 import com.xu.service.UserLoginService;
 
-public class UserLoginAction extends ActionSupport implements SessionAware {
+public class UserLoginAction extends ActionSupport implements SessionAware, ServletRequestAware {
 
 	/**
 	 * 
@@ -19,6 +21,8 @@ public class UserLoginAction extends ActionSupport implements SessionAware {
 	private String cu_name;
 	private String cu_pwd;
 	private Map<String, Object> session;
+	private String result;
+	private HttpServletRequest request;
 
 	public UserLoginService getUserLoginService() {
 		return userLoginService;
@@ -43,32 +47,41 @@ public class UserLoginAction extends ActionSupport implements SessionAware {
 	public void setCu_pwd(String cu_pwd) {
 		this.cu_pwd = cu_pwd;
 	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	@Override
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
 		this.session = session;
 	}
-
+	
 	@Override
-	public void validate() {
+	public void setServletRequest(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		super.validate();
+		this.request = request;
 	}
 
-	@Override
-	public String execute() throws Exception {
+	public String login() throws Exception {
 		// TODO Auto-generated method stub
+		cu_name = request.getParameter("cu_name");
+		cu_pwd = request.getParameter("cu_pwd");
 		Customer customer = userLoginService.isLogin(cu_name, cu_pwd);
 		if (customer != null) {
 			this.session.put("customer", customer);
-//			System.out.println("ad_account:" + this.session.get("ad_account"));
-			return SUCCESS;
+			result = "success";
 		} else {
-//			this.addFieldError("error.err", "Wrong account or password!");
-			ServletActionContext.getRequest().setAttribute("login_message", "Wrong！"); 
-			return INPUT;
+			result = "no customer";
 		}
+		return SUCCESS;
 	}
+
+	
 
 }

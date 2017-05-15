@@ -6,11 +6,11 @@
         <div class="col-sm-6 col-sm-offset-3 ">
         <br>
           <center>
-            <img src="${pageContext.request.contextPath}/Public/images/yes.jpg" > 
+            <img src="${pageContext.request.contextPath}/Public/images/no.png" > 
                <br>
-            <h2> Activated Successfully~~ </h2>   
+            <h2> Activated Failed! </h2>   
             <br>
-                <h4> Login the Online Bank now? </h4> 
+                <h4> Sorry to tell you that activated the online bank is  failed,please do back to the login page.</h4> 
              </center>  
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="col-sm-4">
              <div class="row m-t-50">  
              <div class="col-xs-12"> 
-              <span class="signin" data-toggle="modal" data-target="#myModal">  <button name="signin" class="btn btn-success form-control" onClick="window.open('main.jsp','_self')" >Return</button></span>         
+              <span class="signin" data-toggle="modal" data-target="#myModal">  <button name="signin" class="btn btn-success form-control" onClick="window.open('login.jsp','_self')" >Return</button></span>         
                 </div>
                 </div>                         
             </div>

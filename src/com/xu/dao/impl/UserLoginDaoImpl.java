@@ -14,7 +14,7 @@ public class UserLoginDaoImpl extends HibernateDaoSupport implements UserLoginDa
 	@Override
 	public Customer isExist(String ad_account, String ad_pass) {
 		// TODO Auto-generated method stub
-		String hql = "from Customer c where c.cu_name=? and c.cu_pwd=?";
+		String hql = "from Customer c where c.cu_nickname=? and c.cu_pwd=?";
 		List<Customer> list = (List<Customer>) getHibernateTemplate().find(hql,
 				new String[] { ad_account, Md5Utils.getMd5(ad_pass) });
 		System.out.println("cu_id:" + ad_account + "cu_pwd:" + Md5Utils.getMd5(ad_pass));

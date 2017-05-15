@@ -22,41 +22,83 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/custom.css">
 </head>   
      <script type="text/javascript" > 
-     var isValidate = false;
-     function onLoad() {
-         var loginmsg="${requestScope.login_message}";
-         var regmsg="${requestScope.reg_message}";
-         if(loginmsg!=""){
-         	alert(loginmsg);
-         }
-         if(regmsg!="") {
-        	alert(regmsg);
-         }
-     }
-     
      function loginForm() {
     	 var cu_name= document.getElementById("cu_name");
          var cu_pwd= document.getElementById("cu_pwd"); 
          if(cu_name.value == '') {
         	 alert('Please input account nickname first!');
-        	 return false;
-         }
-         if(cu_pwd.value == '') {
+         } else if(cu_pwd.value == '') {
         	 alert('Please input password first!');
-        	 return false;
+         } else {
+        	 // ajax发起请求
+   		  	 $.ajax({  
+                 type: "post",  
+                 url: "UserLoginAction_login",  
+                 data:{//设置数据源
+               	     cu_name: cu_name.value,
+                     cu_pwd: cu_pwd.value
+                 },
+                 async: false,  
+                 error: function(request) {  
+                     alert("Connection error");  
+                 },  
+                 success: function(data) {
+               	  if(data == "success") {
+               		  window.location.href = "${pageContext.request.contextPath}/User/main.jsp";
+               	  } else if(data == "no customer"){
+               		  alert("Fail!Wrong account or password!");
+               	  }
+                 }  
+             });  
          }
-         return true;
+         return false;
      }
       function RegForm(){ 
           if(Validate()){ 
             //alert("Please remember your password."); 
-            return true;
+        	// ajax发起请求
+    		  $.ajax({  
+                  type: "post",  
+                  url: "UserRegAction_reg",  
+                  data:{//设置数据源
+                	  cu_nickname: $("input[name=cu_nickname]").val(),
+                	  cu_id: $("input[name=cu_id]").val(),
+                	  cu_email: $("input[name=cu_email]").val(),
+                	  cu_pwd: $("input[name=cu_pwd]").val()
+                  },
+                  async: true,  
+                  error: function(request) {  
+                      alert("Connection error");  
+                  },  
+                  success: function(data) {
+                	  if(data == "success") {
+                		  alert("Register successful!We will send you an email to activate!");
+                		  window.location.href = "${pageContext.request.contextPath}/User/main.jsp";
+                	  } else if(data == "no customer"){
+                		  alert("Error!The account doesn't exist!");
+                	  } else {
+                		  alert("Error!Please retry!");
+                	  }
+                  }  
+              });  
           } 
           return false;
         } 
     function Validate(){ 
         var b= document.getElementById("password1").value;
         var c= document.getElementById("repeatpassword"); 
+        if($("input[name=cu_nickname]").val() == '') {
+        	alert("The account name can be empty!");
+            return false;
+        }
+        if($("input[name=cu_id]").val() == '') {
+        	alert("The account id can be empty!");
+            return false;
+        }
+        if($("input[name=cu_email]").val() == '') {
+        	alert("The account email can be empty!");
+            return false;
+        }
         if(b.value=null){ 
             alert("The new password can be empty!");
             return false; 
@@ -92,7 +134,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
 } 
 </script>
 
-<body background="${pageContext.request.contextPath}/Public/images/bg.jpg" onload="onLoad()">
+<body background="${pageContext.request.contextPath}/Public/images/bg.jpg">
 <div class="tp-header">
     <div class="container">
         <div class="row">
@@ -127,7 +169,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
             <div class="modal-body">
                 <div id="myTabContent" class="tab-content">
                     <div class=" signin tab-pane fade active in" id="signin">
-                        <form class="form-horizontal" action="UserLoginAction" method="post" onsubmit="return loginForm()">
+                        <form class="form-horizontal">
                             <fieldset>
                                 <div class="control-group section-top-10">
                                     <label class="control-label" for="userid"> <img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp;Banking Account :</label>
@@ -146,7 +188,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                                <br>
                                 <div class="control-group">
                                     
-                                        <button name="signin" class="btn btn-success form-control" type="submit">Sign In</button>
+                                        <button name="signin" class="btn btn-success form-control" onClick="return loginForm()">Sign In</button>
                                    
                                 </div>
                             </fieldset>
@@ -155,7 +197,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                     
                     
                     <div class="tab-pane fade signup" id="signup">
-                        <form class="form-horizontal" action="UserRegAction" method="post" onsubmit="return RegForm()">
+                        <form class="form-horizontal">
                             <fieldset>
                                 <div class="control-group section-top-10">
                                     <label for="user"><img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp; Account
@@ -201,7 +243,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                                     <label class="control-label" for="confirmsignup"></label>
                                     <div class="controls">
                                         <button id="confirmsignup" name="confirmsignup"
-                                                class="btn btn-success form-control" type="submit">Sign Up
+                                                class="btn btn-success form-control" onClick="return RegForm()">Sign Up
                                         </button>
                                     </div>
                                 </div>

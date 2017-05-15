@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="authority" namespace="/" extends="struts-default">  
+	<package name="authority" namespace="/" extends="struts-default,json-default">  
 		<!-- 定义一个拦截器 -->  
         <interceptors>  
             <interceptor name="authority"  
@@ -69,26 +69,29 @@
 			<result name="error">/Admin/withdrawal.jsp</result>
 		</action>
 		
-		<action name="UserLoginAction" class="userLoginServer">
-			<result name="success">/User/main.jsp</result>
-			<result name="input">/User/login.jsp</result>
-			<result name="error">/User/login.jsp</result>
+		<action name="UserLoginAction_*" method="{1}" class="userLoginServer">
+			<result type="json"><param name="root">result
+			<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
+			</param></result>
 		</action>
 		
-		<action name="UserRegAction" class="userRegServer">
-			<result name="success">/User/main.jsp</result>
-			<result name="input">/User/login.jsp</result>
-			<result name="error">/User/login.jsp</result>
+		<action name="UserRegAction_*" method="{1}" class="userRegServer">
+			<result type="json"><param name="root">result</param></result>
 		</action>
 		
 		<action name="ActivateAction" class="activateServer">
 			<result name="success">/User/activation.jsp</result>
-			<result name="error">/User/login.jsp</result>
+			<result name="error">/User/activatefail.jsp</result>
 		</action>
 		
-		<action name="ForgetPwdAction" class="forgetPwdServer">
-			<result name="success">/User/login.jsp</result>
-			<result name="error">/User/resetpassword.jsp</result>
+		<action name="ForgetPwdAction_*" method="{1}" class="forgetPwdServer">
+			<result type="json"><param name="root">result
+			<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
+			</param></result>
+		</action>
+		
+		<action name="ChangePinAction_*" method="{1}" class="changePinServer">
+			<result type="json"><param name="root">result</param></result>
 		</action>
 	</package>			
 		
@@ -97,4 +100,7 @@
     <constant name="struts.configuration.xml.reload" value="true" />
     
     <constant name="struts.devMode" value="true"/>
+    
+    <!--解决乱码    -->
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
 </struts>

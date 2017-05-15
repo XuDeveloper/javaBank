@@ -52,7 +52,7 @@
 		            	 callback: function(result) {
 		                    	  window.open('main.jsp','_self') 		                       
 		                    }
-		       });      
+		          });      
 			  }  
 		});
 		}); 

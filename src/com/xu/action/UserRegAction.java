@@ -6,15 +6,13 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.xu.entity.AdminUser;
 import com.xu.entity.Customer;
 import com.xu.entity.Result;
 import com.xu.service.UserRegService;
 import com.xu.util.Md5Utils;
-import com.xu.util.NumUtils;
 import com.xu.util.UUIDUtils;
 
-public class UserRegAction extends ActionSupport implements SessionAware {
+public class UserRegAction extends ActionSupport implements SessionAware{
 
 	/**
 	 * 
@@ -25,6 +23,7 @@ public class UserRegAction extends ActionSupport implements SessionAware {
 	private String cu_id;
 	private String cu_email;
 	private String cu_pwd;
+	private String result;
 	private Map<String, Object> session;
 
 	public String getCu_nickname() {
@@ -66,27 +65,29 @@ public class UserRegAction extends ActionSupport implements SessionAware {
 	public void setUserRegService(UserRegService userRegService) {
 		this.userRegService = userRegService;
 	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	@Override
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
 		this.session = session;
 	}
-
-	@Override
-	public void validate() {
-		// TODO Auto-generated method stub
-		super.validate();
-	}
-
-	@Override
-	public String execute() throws Exception {
+	
+	public String reg() {
 		// TODO Auto-generated method stub
 		try {
+			System.out.println(cu_id);
 			Customer customer = userRegService.findById(cu_id);
 			if (customer == null) {
-				ServletActionContext.getRequest().setAttribute("reg_message", "This id doesn't exist!");
-				return ERROR;
+				result = "no customer";
+				return SUCCESS;
 			}
 			customer.setCu_nickname(cu_nickname);
 			customer.setCu_email(cu_email);
@@ -96,25 +97,25 @@ public class UserRegAction extends ActionSupport implements SessionAware {
 			customer.setCode(code);
 			// 0.未激活 1.已激活
 			customer.setStatus(0);
-			Result result = userRegService.add(customer);
-			if (result.getStatus() == Result.SUCCESS) {
-				customer = (Customer) result.getResponse();
+			Result regresult = userRegService.add(customer);
+			if (regresult.getStatus() == Result.SUCCESS) {
+				customer = (Customer) regresult.getResponse();
 				this.session.put("customer", customer);
-				return SUCCESS;
 			} else {
-				if (result.getResponse().equals("the account name exists")) {
+				if (regresult.getResponse().equals("the account name exists")) {
 					// this.addFieldError("error.err", "The account name exists");
-					ServletActionContext.getRequest().setAttribute("reg_message", result.getResponse());
-					return ERROR;
+					result = "error";
 				}
-				return ERROR;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception	
-			ServletActionContext.getRequest().setAttribute("reg_message", "The email address doesn't exist!");
-			return ERROR;
-		}
+			result = "error";
+			return SUCCESS;
+		} 
+		return SUCCESS;
 		
 	}
+
+	
 
 }

@@ -27,7 +27,39 @@
                 this.value =this.value.replace(/\s/g,'').replace(/(\d{4})(?=\d)/g,"$1 ");;  
             }; 
             
-        };  
+        };
+      function resetPwd() {
+    	  if($("input[name=cu_nickname]").val() == '') {
+    		  alert('Please input the account name!');
+    	  } else if($("input[name=cu_id]").val() == '') {
+    		  alert('Please input the account id!');
+    	  } else if($("input[name=cu_email]").val() == '') {
+    		  alert('Please input the account email!');
+    	  } else {
+    		  // ajax发起请求
+    		  $.ajax({  
+                  type: "post",  
+                  url: "ForgetPwdAction_executeForgetPwd",  
+                  data:{//设置数据源
+                	  cu_nickname:$("input[name=cu_nickname]").val(),
+                      cu_id:$("input[name=cu_id]").val(),
+                      cu_email:$("input[name=cu_email]").val()//这里不要加","  不然会报错，而且根本不会提示错误地方
+                  },
+                  async: false,  
+                  error: function(request) {  
+                      alert("Connection error");  
+                  },  
+                  success: function(data) {
+                	  if(data == "success") {
+                		  alert('Successful!We will send the email!');
+                		  window.location.href = "login.jsp";
+                	  } else if(data == "no customer"){
+                		  alert("Fail!The account doesn't exist");
+                	  }
+                  }  
+              });  
+    	  }
+      }
         
 </script>
 
@@ -45,16 +77,15 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 ">
             <h2 class="heading underline">Reset Password</h2>            
            <font size="+1" color="#666666"> Please conplete the following information ,so that we can help you reset the password.</font>
               <br>
-              <h4 > Account Number:</h4><input  type="text"id="accountNum" style="width:500px; font-size:28px; height:35px" >
-            <h4 > ID   Number:</h4><input type="text" id="id" value="" style="width:500px; font-size:28px; height:35px" >
-            <h4 > Email Address:</h4><input  type="text" id="eamil" style="width:500px; font-size:28px; height:35px" >     
+              <h4 > Account Name:</h4><input  type="text" id="accountNum" name="cu_nickname" style="width:500px; font-size:28px; height:35px" >
+            <h4 > ID   Number:</h4><input type="text" id="id" name="cu_id" style="width:500px; font-size:28px; height:35px" >
+            <h4 > Email Address:</h4><input  type="text" id="eamil" name="cu_email" style="width:500px; font-size:28px; height:35px" >     
         </div>
     </div>
     <div class="row">
@@ -63,7 +94,7 @@
         <div class="col-sm-4">
              <div class="row m-t-50">  
              <div class="col-xs-12"> 
-              <button id="send" name="send" class="btn btn-success form-control" onClick="window.open('resetsuccess.jsp','_self')">Submit</button>          
+              <button id="send" name="send" class="btn btn-success form-control" onClick="resetPwd()">Submit</button>          
                 </div>
                 </div>  
                <div align="right" ><a href="login.jsp"><font size="+2" color="#003399">return--></font></a></div>          
