@@ -85,6 +85,11 @@
 			<result name="success">/User/activation.jsp</result>
 			<result name="error">/User/login.jsp</result>
 		</action>
+		
+		<action name="ForgetPwdAction" class="forgetPwdServer">
+			<result name="success">/User/login.jsp</result>
+			<result name="error">/User/resetpassword.jsp</result>
+		</action>
 	</package>			
 		
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
