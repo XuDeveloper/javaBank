@@ -69,6 +69,14 @@
 			<result name="error">/Admin/withdrawal.jsp</result>
 		</action>
 		
+		<action name="ChangePinAction_*" method="{1}" class="changePinServer">
+			<result type="json"><param name="root">result</param></result>
+		</action>
+		
+		<action name="CloseAccountAction_*" method="{1}" class="closeAccountServer">
+			<result type="json"><param name="root">result</param></result>
+		</action>
+		
 		<action name="UserLoginAction_*" method="{1}" class="userLoginServer">
 			<result type="json"><param name="root">result
 			<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
@@ -90,9 +98,7 @@
 			</param></result>
 		</action>
 		
-		<action name="ChangePinAction_*" method="{1}" class="changePinServer">
-			<result type="json"><param name="root">result</param></result>
-		</action>
+		
 	</package>			
 		
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>

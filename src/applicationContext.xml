@@ -70,6 +70,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="closeAccountDao" class="com.xu.dao.impl.CloseAccountDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="userLoginDao" class="com.xu.dao.impl.UserLoginDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -115,6 +119,10 @@
 		<property name="changePinDao" ref="changePinDao"></property>
 	</bean>
 	
+	<bean id="closeAccountService" class="com.xu.service.impl.CloseAccountServiceImpl">
+		<property name="closeAccountDao" ref="closeAccountDao"></property>
+	</bean>
+	
 	<bean id="userLoginService" class="com.xu.service.impl.UserLoginServiceImpl">
 		<property name="userLoginDao" ref="userLoginDao"></property>
 	</bean>
@@ -152,6 +160,9 @@
 	</bean>
 	<bean id="changePinServer" class="com.xu.action.ChangePinAction" scope="prototype">
 		<property name="changePinService" ref="changePinService"></property>
+	</bean>
+	<bean id="closeAccountServer" class="com.xu.action.CloseAccountAction" scope="prototype">
+		<property name="closeAccountService" ref="closeAccountService"></property>
 	</bean>
 	<bean id="userLoginServer" class="com.xu.action.UserLoginAction" scope="prototype">
 		<property name="userLoginService" ref="userLoginService"></property>
