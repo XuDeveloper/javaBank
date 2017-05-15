@@ -38,7 +38,7 @@
     	 var cu_name= document.getElementById("cu_name");
          var cu_pwd= document.getElementById("cu_pwd"); 
          if(cu_name.value == '') {
-        	 alert('Please input account name first!');
+        	 alert('Please input account nickname first!');
         	 return false;
          }
          if(cu_pwd.value == '') {
@@ -161,7 +161,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                                     <label for="user"><img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp; Account
                                         :</label>
                                     <div class="controls">
-                                        <input id="cu_name" name="cu_name" class="form-control input-large" type="text"
+                                        <input id="cu_name" name="cu_nickname" class="form-control input-large" type="text"
                                                placeholder="Name" style="font-size:24px">
                                     </div>
                                 </div>

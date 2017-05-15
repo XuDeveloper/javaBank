@@ -21,18 +21,18 @@ public class UserRegAction extends ActionSupport implements SessionAware {
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserRegService userRegService;
-	private String cu_name;
+	private String cu_nickname;
 	private String cu_id;
 	private String cu_email;
 	private String cu_pwd;
 	private Map<String, Object> session;
 
-	public String getCu_name() {
-		return cu_name;
+	public String getCu_nickname() {
+		return cu_nickname;
 	}
 
-	public void setCu_name(String cu_name) {
-		this.cu_name = cu_name;
+	public void setCu_nickname(String cu_nickname) {
+		this.cu_nickname = cu_nickname;
 	}
 
 	public String getCu_id() {
@@ -82,21 +82,20 @@ public class UserRegAction extends ActionSupport implements SessionAware {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		Customer customer = new Customer();
-		customer.setCu_name(cu_name);
-		customer.setCu_id(cu_id);
-		customer.setCu_email(cu_email);
-		customer.setCu_pwd(Md5Utils.getMd5(cu_pwd));
-		customer.setBalance(0);
-		customer.setAccountNum(NumUtils.getRandomAccountNum());
-		customer.setCardNum(NumUtils.getRandomCardNum());
-		customer.setAccountStatus("Not Available");
-		// 生成动态code
-		String code = UUIDUtils.getUUID() + UUIDUtils.getUUID();
-		customer.setCode(code);
-		// 0.未激活 1.已激活
-		customer.setStatus(0);
 		try {
+			Customer customer = userRegService.findById(cu_id);
+			if (customer == null) {
+				ServletActionContext.getRequest().setAttribute("reg_message", "This id doesn't exist!");
+				return ERROR;
+			}
+			customer.setCu_nickname(cu_nickname);
+			customer.setCu_email(cu_email);
+			customer.setCu_pwd(Md5Utils.getMd5(cu_pwd));
+			// 生成动态code
+			String code = UUIDUtils.getUUID() + UUIDUtils.getUUID();
+			customer.setCode(code);
+			// 0.未激活 1.已激活
+			customer.setStatus(0);
 			Result result = userRegService.add(customer);
 			if (result.getStatus() == Result.SUCCESS) {
 				customer = (Customer) result.getResponse();

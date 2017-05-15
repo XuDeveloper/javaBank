@@ -4,6 +4,7 @@ public class Customer {
 	private Integer id;
 	private String cu_id;
 	private String cu_pwd;
+	private String cu_nickname;
 	private String cu_name;
 	private String cu_PIN;
 	private String cu_email;
@@ -40,6 +41,14 @@ public class Customer {
 
 	public void setCu_pwd(String cu_pwd) {
 		this.cu_pwd = cu_pwd;
+	}
+
+	public String getCu_nickname() {
+		return cu_nickname;
+	}
+
+	public void setCu_nickname(String cu_nickname) {
+		this.cu_nickname = cu_nickname;
 	}
 
 	public String getCu_name() {

@@ -8,5 +8,7 @@ public interface UserRegDao {
 	 * 添加用户
 	 */
 	public Result add(Customer customer);
+	
+	public Customer findById(String cu_id);
 
 }

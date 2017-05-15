@@ -14,6 +14,9 @@
 		<property name="cu_pwd" type="java.lang.String">
 			<column name="cu_pwd"  />
 		</property>
+		<property name="cu_nickname" type="java.lang.String">
+			<column name="cu_nickname"  />
+		</property>
 		<property name="cu_name" type="java.lang.String">
 			<column name="cu_name"  />
 		</property>

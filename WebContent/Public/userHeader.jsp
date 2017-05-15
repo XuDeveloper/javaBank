@@ -3,9 +3,13 @@
     Created on : 2017-5-13, 18:03:16
     Author     : lenovo
 --%>
-
+<%@page import="com.xu.entity.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
+<%
+   Customer customer= (Customer)session.getAttribute("customer");
+%>
+
 <head>
     <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -42,7 +46,7 @@
             <div class="col-xs-7 col-md-6">
             </div> 
             <div class="col-xs-5 col-md-6" align="right">
-               <font color="#999999">username</font> &nbsp;
+               <font color="#999999"><%=customer.getCu_nickname() %></font> &nbsp;
                <a href="login.jsp" class="hvr-underline-from-center"><font color="#999999">Logout</font></a>
             </div>
             <div align="right">

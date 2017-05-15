@@ -90,7 +90,7 @@
                  <tr >  <td align="right"><h3>Authorization Code:</h3></td>
                          <td><input type="text" id="suCode" align="absmiddle" name="ad_sucode" style=" width:100%;  font-size:24px;" /></tr>                
                      <tr>  <td> </td>
-                         <td><a href="#" id="confirm"><input type="button" value="Confirm"  style="background-color: #32415a; color: #fff; font-size:24px;"/></a></td></tr>
+                         <td><a href="#" id="confirm"><input type="submit" value="Confirm"  style="background-color: #32415a; color: #fff; font-size:24px;"/></a></td></tr>
                         
                  </table>
                 </form>                           

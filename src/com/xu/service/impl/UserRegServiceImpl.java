@@ -23,7 +23,7 @@ public class UserRegServiceImpl implements UserRegService {
 		// TODO Auto-generated method stub
 		Result result = new Result();
 		if (userRegDao.add(customer).getStatus() == Result.SUCCESS) {
-			MailUtils.sendMail(customer.getCu_email(), customer.getCode());
+			MailUtils.sendRegMail(customer.getCu_email(), customer.getCode());
 			result.setStatus(Result.SUCCESS);
 			result.setResponse(customer);
 			return result;
@@ -31,6 +31,12 @@ public class UserRegServiceImpl implements UserRegService {
 		result.setStatus(Result.ERROR);
 		result.setResponse("The account name exists");
 		return result;
+	}
+
+	@Override
+	public Customer findById(String cu_id) throws Exception {
+		// TODO Auto-generated method stub
+		return userRegDao.findById(cu_id);
 	}
 
 }

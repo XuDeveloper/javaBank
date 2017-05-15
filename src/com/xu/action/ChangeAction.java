@@ -54,7 +54,6 @@ public class ChangeAction extends ActionSupport {
 
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-
 		Result result = changeService.changepin(cu_id, cardNum,cu_PIN);
 		if (result.getStatus() == Result.SUCCESS) {
 			this.customer = (Customer) result.getResponse();
