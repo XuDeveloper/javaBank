@@ -45,10 +45,13 @@
 			  else{
 				  $.ajax({  
 	                  type: "post",  
-	                  url: "",  
+	                  url: "ChangePinAction_changepin",  
 	                  data:{
 	                      cu_id:$("#ID").val(),
-	                      cu_PIN:$("#new1").val()//这里不要加","  不然会报错，而且根本不会提示错误地方
+	                      cardNum:$("#cardNum").val(),
+	                      cu_oldpin:$("#old").val(),
+	                      ad_sucode:$("#suCode").val(),
+	                      cu_newpin:$("#new1").val()//这里不要加","  不然会报错，而且根本不会提示错误地方
 	                  },
 	                  
 	                  async: false,  
@@ -66,12 +69,15 @@
 	        		             text: '<h3>Change sucessfully!!</h3>',
 	        		             callback: function(result) {
 	        		                 window.open('main.jsp','_self') 		                       
-	        		                  }
+	        		             }
 	        		       });
 	                		  
 	                	  }
-	                	  else if(data == "no customer"){
+	                	  else if(data == "not exist"){
 	                		  alert("Fail!The account doesn't exist");
+	                	  }
+	                	  else if(data == "code error") {
+	                		  alert("Fail!The code is error!");
 	                	  }
 	                  }  
 	              });  

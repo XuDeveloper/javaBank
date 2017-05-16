@@ -3,7 +3,7 @@
 <jsp:include page="../Public/adminHeader.jsp"></jsp:include>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <script type="text/javascript">
-   function cl() {  
+function cl() {  
             	var t=$("table tr:eq(3) td:eq(1)").text();
                 if( t==0){
                     modal({                        
@@ -24,7 +24,8 @@
           	                  type: "post",  
           	                  url: "CloseAccountAction_close",  
           	                  data:{
-          	                      cardNum:c //把没钱的卡号关闭掉
+          	                      cardNum:c          	                      
+          	                      //把没钱的卡号关闭掉
           	                      //这里不要加","  不然会报错，而且根本不会提示错误地方
           	                  },          	                  
           	                  async: false,            	                  
@@ -40,11 +41,11 @@
           	        		             text: '<h3>Close sucessfully!!</h3>',
           	        		             callback: function(result) {
           	        		                 window.open('main.jsp','_self') 		                       
-          	        		             }
+          	        		                  }
           	        		       });
           	                		  
           	                	  }
-          	                	  else if(data == "no customer"){
+          	                	  else if(data == "not customer"){
           	                		  alert("Fail!The account doesn't exist");
           	                	  }
           	                  }  

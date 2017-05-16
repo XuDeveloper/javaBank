@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/revolution-slider/css/settings.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/imagehover/css/imagehover.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/animate/animate.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/iCheck/css/all.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/vendors/sweetalert2/css/sweetalert2.min.css">
     <!----------------custo css----------------->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Public/css/custom.css">
 </head>   
-     <script type="text/javascript" > 
+
+
+<script type="text/javascript" > 
      function loginForm() {
     	 var cu_name= document.getElementById("cu_name");
          var cu_pwd= document.getElementById("cu_pwd"); 
@@ -134,6 +135,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
 } 
 </script>
 
+
 <body background="${pageContext.request.contextPath}/Public/images/bg.jpg">
 <div class="tp-header">
     <div class="container">
@@ -143,17 +145,21 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
               &nbsp;  <font size="+3" color="#0000FF" style="font-family:'MS Serif', 'New York', serif">Bank</font>
             </div>
             <div class="col-xs-5 col-md-6 text-right">
-                <span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs" ><font size="+2">Sign In</font></span><i
+                <span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs" ><font size="+1">Sign In</font></span><i
                         class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
                 <span class="register" data-toggle="modal" data-target="#myModal"><span
-                        class="hidden-xs"><font size="+2">Register</font></span><i class="fa fa-user-plus visible-xs-block"
+                        class="hidden-xs"><font size="+1">Register</font></span><i class="fa fa-user-plus visible-xs-block"
                                                             aria-hidden="true"></i></span>
-
-            </div>
+           </div>
+            <div align="right">
+             <a href="" class="hvr-underline-from-center"><font size="+3" color="#FFFFFF">Home</font></a> 
+                &nbsp;
+                <a href="service.jsp" class="hvr-underline-from-center"><font size="+3" color="#FFFFFF">Services</font></a>
+                </div>
+                
         </div>
     </div>
 </div>
-
 
 <!--Login And Register Modal-->
 <div class="modal fade" id="myModal" role="dialog">

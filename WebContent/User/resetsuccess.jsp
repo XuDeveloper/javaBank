@@ -31,20 +31,39 @@
 <script type="text/javascript">
 	function SubmitForm() {
 		if (Validate()) {
-			alert("Please remember your password.");
-			window.open('login.jsp', '_self');
+
+			$.ajax({
+				type : "post",
+				url : "ResetPwdAction_resetPwd",
+				data : {
+					cu_pwd : document.getElementById("password").value
+				},
+				async : false,
+				error : function(request) {
+					alert("Connection error");
+				},
+				success : function(data) {
+					if (data == "success") {
+						alert("Success!Please login again!");
+						window.open('${pageContext.request.contextPath}/User/login.jsp', '_self')
+					} else if (data == "no customer") {
+						alert("Fail!The account doesn't exist");
+					} else if (data == "error") {
+						alert("Error!Please retry!");
+					}
+				}
+			});
 
 		}
 	}
 	function Validate() {
 		var b = document.getElementById("password").value;
 		var c = document.getElementById("repeatpassword");
-
 		if (b.value = null) {
 			alert("The new password can be empty!");
 			return false;
 		}
-		if (checkPass(b) < 3) {
+		if (checkPass(b) < 4) {
 			alert("The complexity of the new password is no enough,it should include the capital capital and small letter、 small letter and number ！");
 			return false;
 		}
@@ -52,8 +71,13 @@
 			alert("The two new password is different!");
 			return false;
 		}
-
-		return true;
+		if (b === c.value) {
+			if (checkPass(b) < 4) {
+				alert("The complexity of the new password is no enough,it should include the capital capital and small letter、 small letter and number ！");
+				return false;
+			}
+			return true;
+		}
 	}
 
 	function checkPass(pass) {
@@ -92,7 +116,7 @@
 				</div>
 				<div class="col-xs-5 col-md-6 text-right">
 					<span class="signin" data-toggle="modal" data-target="#myModal">
-						<a href="login.jsp"><font size="+2">Main Page</font></a>
+						<a href="${pageContext.request.contextPath}/User/login.jsp"><font size="+2">Main Page</font></a>
 					</span>
 				</div>
 			</div>
@@ -107,10 +131,10 @@
 					following information ,so that we can help you reset the password.</font>
 				<br>
 				<h4>new password:</h4>
-				<input type="text" id="password"
+				<input type="password" id="password"
 					style="width: 500px; font-size: 28px; height: 35px">
 				<h4>Confirm password:</h4>
-				<input type="text" id="repeatpassword"
+				<input type="password" id="repeatpassword"
 					style="width: 500px; font-size: 28px; height: 35px">
 			</div>
 		</div>

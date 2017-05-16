@@ -37,16 +37,22 @@ public class ForgetPwdActivateAction extends ActionSupport implements SessionAwa
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		String code = ServletActionContext.getRequest().getParameter("code");
-		long time = Long.parseLong(NumUtils.getFromBase64(code.substring(32)));
-		if (System.currentTimeMillis() > time) {
-			return ERROR;
-		}
-		Customer customer = forgetPwdActivateService.findByCode(code);
-		if (customer == null) {
+		try {
+			long time = Long.parseLong(NumUtils.getFromBase64(code.substring(32)));
+			if (System.currentTimeMillis() > time) {
+				return ERROR;
+			}
+			Customer customer = forgetPwdActivateService.findByCode(code);
+			if (customer == null) {
+				return INPUT;
+			}
+			this.session.put("cur_customer_cu_id", customer.getCu_id());
+			return SUCCESS;
+		} catch (Exception e) {
+			// TODO: handle exception
 			return INPUT;
 		}
-		this.session.put("cur_customer_cu_id", customer.getCu_id());
-		return SUCCESS;
+		
 	}
 
 }

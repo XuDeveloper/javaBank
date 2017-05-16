@@ -39,7 +39,6 @@ public class CloseAccountAction extends ActionSupport {
 
 	public String close() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("cardNum:" + cardNum);
 		if (closeAccountService.close(cardNum)) {
 			result = "success";
 		} else {

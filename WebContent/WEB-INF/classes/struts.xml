@@ -93,9 +93,9 @@
 		</action>
 		
 		<action name="ForgetPwdActivateAction" class="forgetPwdActivateServer">
-			<result name="success">/User/activation.jsp</result>
-			<result name="error">/User/activatefail.jsp</result>
-			<result name="input">/User/activatefail.jsp</result>
+			<result name="success">/User/resetsuccess.jsp</result>
+			<result name="error">/User/resettimeout.jsp</result>
+			<result name="input">/User/resetfail.jsp</result>
 		</action>
 		
 		<action name="ForgetPwdAction_*" method="{1}" class="forgetPwdServer">

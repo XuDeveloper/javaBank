@@ -16,9 +16,9 @@ public class ResetPwdServiceImpl implements ResetPwdService {
 	}
 
 	@Override
-	public boolean resetPwd(String cu_id, String old_cu_pwd, String new_cu_pwd) {
+	public boolean resetPwd(String cu_id, String new_cu_pwd) {
 		// TODO Auto-generated method stub
-		return resetPwdDao.resetPwd(cu_id, old_cu_pwd, new_cu_pwd);
+		return resetPwdDao.resetPwd(cu_id, new_cu_pwd);
 	}
 
 }

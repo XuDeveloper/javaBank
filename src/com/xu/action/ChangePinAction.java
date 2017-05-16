@@ -22,7 +22,7 @@ public class ChangePinAction extends ActionSupport implements SessionAware {
 	private String result;
 	private Customer customer;
 	private Map<String, Object> session;
-
+	
 	public ChangePinService getChangePinService() {
 		return changePinService;
 	}

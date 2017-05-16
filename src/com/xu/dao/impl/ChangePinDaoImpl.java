@@ -21,7 +21,7 @@ public class ChangePinDaoImpl extends HibernateDaoSupport implements ChangePinDa
 		Customer customer = new Customer();
 		String hql = "from Customer c where c.cardNum=? and c.cu_id=? and c.cu_PIN=?";
 		List<Customer> list = (List<Customer>) getHibernateTemplate().find(hql,
-				new String[] { cardNum, cu_id.replaceAll(" ", ""), cu_oldpin });
+				new String[] { cardNum.replaceAll(" ", ""), cu_id.replaceAll(" ", ""), cu_oldpin });
 		if (list.size() != 1) {
 			result.setStatus(Result.ERROR);
 			result.setResponse("the account exists");
