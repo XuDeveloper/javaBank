@@ -74,6 +74,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="forgetPwdActivateDao" class="com.xu.dao.impl.ForgetPwdActivateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<bean id="userLoginDao" class="com.xu.dao.impl.UserLoginDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -123,6 +127,10 @@
 		<property name="closeAccountDao" ref="closeAccountDao"></property>
 	</bean>
 	
+	<bean id="forgetPwdActivateService" class="com.xu.service.impl.ForgetPwdActivateServiceImpl">
+		<property name="forgetPwdActivateDao" ref="forgetPwdActivateDao"></property>
+	</bean>
+	
 	<bean id="userLoginService" class="com.xu.service.impl.UserLoginServiceImpl">
 		<property name="userLoginDao" ref="userLoginDao"></property>
 	</bean>
@@ -163,6 +171,9 @@
 	</bean>
 	<bean id="closeAccountServer" class="com.xu.action.CloseAccountAction" scope="prototype">
 		<property name="closeAccountService" ref="closeAccountService"></property>
+	</bean>
+	<bean id="forgetPwdActivateServer" class="com.xu.action.ForgetPwdActivateAction" scope="prototype">
+		<property name="forgetPwdActivateService" ref="forgetPwdActivateService"></property>
 	</bean>
 	<bean id="userLoginServer" class="com.xu.action.UserLoginAction" scope="prototype">
 		<property name="userLoginService" ref="userLoginService"></property>

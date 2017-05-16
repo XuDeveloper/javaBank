@@ -60,7 +60,7 @@ public class MailUtils {
 				"<tr><td><p ><h4>Hi,Dear customer:</p></h4></td></tr>" +
 				"<tr><td>&nbsp;Your online bank is activated successlly!<p>&nbsp;Please click the following link to go back to the bank website!</p></td></tr>" +
 				"<tr><td><font color='#0000CC'>" + 
-				"&nbsp;<a href='http://localhost:8080/javaBank/ActivateAction?code='" + code + "'>http://localhost:8080/javaBank/ActivateAction?code=" + code + "</a>" +
+				"&nbsp;<a href='" + GenerateUrlUtils.generateRegUrl(code) + "'>" + GenerateUrlUtils.generateForgetPwdUrl(code) + "</a>" +
 				"</font>" +
 				"<p><font size='+1' style='color:#333'>(If you can't click the URL link address, copy and paste it to the browser's address input box, and then click enter.)</font></p> </td></tr>" + 
 				"<tr><td>&nbsp;</td></tr><tr><td><font size='+1' style='color:#333'>Remind!" +
@@ -101,7 +101,7 @@ public class MailUtils {
 		// 2.2 设置收件人
 		message.setRecipient(RecipientType.TO, new InternetAddress(to));
 		// 2.3 设置主题
-		message.setSubject("javaBank Activate");
+		message.setSubject("javaBank Reset Password");
 		// 2.4 邮件正文
 		// <a href='http://localhost:8080/javaBank/ActivateAction?code='" + code + "'>" "http://localhost:8080/javaBank/ActivateAction?code=" + code
 		message.setContent(
@@ -112,10 +112,11 @@ public class MailUtils {
 	            "}</style>" +
 	            "<body ><br /><center>" +
 				"<table cellpadding='0px' cellspacing='0' style=' margin-left:190px; margin-right:120px;border:none;font-family:Verdana,Geneva,sans-serif ;font-size:22px;' >" +
-				"<tr><td><p ><h4>Hi,Dear customer:</p></h4></td></tr>" +
+				"<tr><td><p><h4>Hi,Dear customer:</p></h4></td></tr>" +
 				"<tr><td>&nbsp;You received this E-mail because you (or possibly someone else) applied for a new password. If this is not what you apply for, please ignore this email, but if you continue to receive this kind of letter harassment, please contact the administrator as soon as possible.</td></tr>" +
 				"<tr><td><p>Please click the following link to go back to the bank website and reset password!<p></td></tr>" + 
-				"&nbsp;<a href='http://localhost:8080/javaBank/ActivateAction?code='" + code + "'>http://localhost:8080/javaBank/ActivateAction?code=" + code + "</a>" +
+				"<tr><td><font color='#0000CC'>" + 
+				"&nbsp;<a href='" + GenerateUrlUtils.generateForgetPwdUrl(code) + "'>" + GenerateUrlUtils.generateForgetPwdUrl(code) + "</a>" +
 				"</font>" +
 				"<p><font size='+1' style='color:#333'>(If you can't click the URL link address, copy and paste it to the browser's address input box, and then click enter.)</font></p> </td></tr>" + 
 				"<tr><td>&nbsp;</td></tr><tr><td><font size='+1' style='color:#333'>Remind!" +

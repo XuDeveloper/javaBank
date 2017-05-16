@@ -8,6 +8,8 @@ import com.xu.dao.ForgetPwdDao;
 import com.xu.entity.AdminUser;
 import com.xu.entity.Customer;
 import com.xu.util.Md5Utils;
+import com.xu.util.NumUtils;
+import com.xu.util.UUIDUtils;
 
 public class ForgetPwdDaoImpl extends HibernateDaoSupport implements ForgetPwdDao {
 
@@ -20,7 +22,18 @@ public class ForgetPwdDaoImpl extends HibernateDaoSupport implements ForgetPwdDa
 		if (list.size() != 1) {
 			return null;
 		}
-		return list.get(0);
+		Customer customer = list.get(0);
+		// 1小时后过期
+		long time = System.currentTimeMillis() + 60 * 60 * 1000;
+		String code = UUIDUtils.getUUID() + NumUtils.getBase64(time + "");
+		customer.setCode(code);
+		try {
+			this.getHibernateTemplate().update(customer);
+			return customer;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 }

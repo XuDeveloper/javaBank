@@ -11,16 +11,14 @@
         </ul>    
     </div>
  <script type="text/javascript">      
-		$(document).ready(function(e) {     	
-		  $('a#confirm').click(function() {  				  
+		  function change(){				  
 			  if($("#ID").val().length!=22){
 				    modal({
 		              type: 'alert',
 		              title: 'Warning',
-		             text: ' <h3>&nbsp;The Identity ID number must have 18 numbers! </h3>'
+		             text: ' <h3>&nbsp;The Identity ID number must have only 18 numbers! </h3>'
 		       });      
-			  }	
-			  
+			  }				  
 			  else  if($("#old").val()==""||$("#old").val()==null){
 				    modal({
 		              type: 'alert',
@@ -45,17 +43,41 @@
 		       });      
 			  }	
 			  else{
-				  modal({
-		              type: 'alert',
-		              title: 'Warning',
-		             text: '<h3>Change sucessfully!!</h3>',
-		            	 callback: function(result) {
-		                    	  window.open('main.jsp','_self') 		                       
-		                    }
-		          });      
+				  $.ajax({  
+	                  type: "post",  
+	                  url: "",  
+	                  data:{
+	                      cu_id:$("#ID").val(),
+	                      cu_PIN:$("#new1").val()//这里不要加","  不然会报错，而且根本不会提示错误地方
+	                  },
+	                  
+	                  async: false,  
+	                  
+	                  error: function(request) {  
+	                      alert("Connection error");  
+	                  },  
+	                  
+	                  success: function(data) {
+	                	  if(data == "success") {
+	                		  
+	                		  modal({
+	        		              type: 'alert',
+	        		              title: 'Remind',
+	        		             text: '<h3>Change sucessfully!!</h3>',
+	        		             callback: function(result) {
+	        		                 window.open('main.jsp','_self') 		                       
+	        		                  }
+	        		       });
+	                		  
+	                	  }
+	                	  else if(data == "no customer"){
+	                		  alert("Fail!The account doesn't exist");
+	                	  }
+	                  }  
+	              });  
+				  
 			  }  
-		});
-		}); 
+		  }
 		
 		
 		  window.onload =function() {  
@@ -79,18 +101,18 @@
                 <tr ><td align="right"><h3> User Card Number:</h3> </td>
        				  <td ><input type="text" id="cardNum" align="absmiddle" style=" width:100%;  font-size:24px;"/></td></tr>
        			  <tr>  <td align="right"><h3> Identity ID number:</h3></td>
- 						<td><input type="text"  align="absmiddle"  id="ID" style=" width:100%;  font-size:24px;" /></td></tr>                 
+ 						<td><input type="text"  align="absmiddle" name="cu_id" id="ID" style=" width:100%;  font-size:24px;" /></td></tr>                 
  			    <tr>  <td align="right"><h3>  Old PIN:</h3></td>
  						<td><input type="text"  align="absmiddle"  id="old" style=" width:100%;  font-size:24px;"/></td></tr>   
  				<tr>  <td align="right"><h3>  New PIN:</h3></td>
  						<td ><input type="text"  align="absmiddle"  id="new" style=" width:100%;  font-size:24px;" /></td></tr>   
  						
  				 <tr>  <td align="right"><h3> Confirm New PIN:</h3></td>
- 						<td><input type="text"  align="absmiddle"  id="new1" style=" width:100%;  font-size:24px;"/></td></tr>   
+ 						<td><input type="text"  align="absmiddle" name="cu_PIN" id="new1" style=" width:100%;  font-size:24px;"/></td></tr>   
                  <tr >  <td align="right"><h3>Authorization Code:</h3></td>
                          <td><input type="text" id="suCode" align="absmiddle" name="ad_sucode" style=" width:100%;  font-size:24px;" /></tr>                
                      <tr>  <td> </td>
-                         <td><a href="#" id="confirm"><input type="submit" value="Confirm"  style="background-color: #32415a; color: #fff; font-size:24px;"/></a></td></tr>
+                         <td><input type="button" value="Confirm"  style="background-color: #32415a; color: #fff; font-size:24px;" onclick="change()"/></a></td></tr>
                         
                  </table>
                 </form>                           
