@@ -14,7 +14,7 @@ public class InquiryDaoImpl extends HibernateDaoSupport implements InquiryDao {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer c where c.cu_id=?",
-				cu_id);
+				cu_id.replaceAll(" ", ""));
 		if (customers.size() != 1) {
 			return null;
 		}

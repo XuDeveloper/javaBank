@@ -43,7 +43,7 @@ public class ForgetPwdActivateAction extends ActionSupport implements SessionAwa
 		}
 		Customer customer = forgetPwdActivateService.findByCode(code);
 		if (customer == null) {
-			return ERROR;
+			return INPUT;
 		}
 		this.session.put("cur_customer_cu_id", customer.getCu_id());
 		return SUCCESS;

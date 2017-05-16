@@ -94,6 +94,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="resetPwdDao" class="com.xu.dao.impl.ResetPwdDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<!-- Service配置 -->
 	<bean id="loginService" class="com.xu.service.impl.LoginServiceImpl">
 		<property name="loginDao" ref="loginDao"></property>
@@ -147,6 +151,10 @@
 		<property name="forgetPwdDao" ref="forgetPwdDao"></property>
 	</bean>
 	
+	<bean id="resetPwdService" class="com.xu.service.impl.ResetPwdServiceImpl">
+		<property name="resetPwdDao" ref="resetPwdDao"></property>
+	</bean>
+	
 	<!-- Action设置 -->
 	<bean id="regServer" class="com.xu.action.RegAction" scope="prototype">
 		<property name="regService" ref="regService"></property>
@@ -186,6 +194,9 @@
 	</bean>
 	<bean id="forgetPwdServer" class="com.xu.action.ForgetPwdAction" scope="prototype">
 		<property name="forgetPwdService" ref="forgetPwdService"></property>
+	</bean>
+	<bean id="resetPwdServer" class="com.xu.action.ResetPwdAction" scope="prototype">
+		<property name="resetPwdService" ref="resetPwdService"></property>
 	</bean>
 	
 </beans>

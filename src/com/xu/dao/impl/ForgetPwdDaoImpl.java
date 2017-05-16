@@ -18,7 +18,7 @@ public class ForgetPwdDaoImpl extends HibernateDaoSupport implements ForgetPwdDa
 		// TODO Auto-generated method stub
 		String hql = "from Customer c where c.cu_nickname=? and c.cu_id=? and c.cu_email=? ";
 		List<Customer> list = (List<Customer>) getHibernateTemplate().find(hql,
-				new String[] { cu_nickname, cu_id, cu_email });
+				new String[] { cu_nickname, cu_id.replaceAll(" ", ""), cu_email });
 		if (list.size() != 1) {
 			return null;
 		}

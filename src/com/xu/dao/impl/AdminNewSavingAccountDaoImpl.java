@@ -1,8 +1,5 @@
 package com.xu.dao.impl;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.xu.dao.AdminNewSavingAccountDao;
@@ -17,13 +14,13 @@ public class AdminNewSavingAccountDaoImpl extends HibernateDaoSupport implements
 		// TODO Auto-generated method stub
 		Result result = new Result();
 		Customer customer = new Customer();
-		customer.setCu_id(cu_id);
+		customer.setCu_id(cu_id.replaceAll(" ", ""));
 		customer.setCu_name(cu_name);
 		customer.setCu_PIN(cu_PIN);
 		customer.setBalance(0);
 		customer.setAccountNum(NumUtils.getRandomAccountNum());
 		customer.setCardNum(NumUtils.getRandomCardNum());
-		// “Normal”, “Locked”, “Not activated”, “Not Available” 
+		// “Normal”, “Locked”, “Not activated”, “Not Available”
 		customer.setAccountStatus("Not Available");
 		try {
 			getHibernateTemplate().save(customer);
@@ -35,7 +32,7 @@ public class AdminNewSavingAccountDaoImpl extends HibernateDaoSupport implements
 			result.setStatus(Result.ERROR);
 			result.setResponse("the account exists");
 			return result;
-		}		
+		}
 	}
 
 }

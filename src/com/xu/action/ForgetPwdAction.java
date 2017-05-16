@@ -70,6 +70,7 @@ public class ForgetPwdAction extends ActionSupport implements ServletRequestAwar
 		cu_nickname = request.getParameter("cu_nickname");
 		cu_id = request.getParameter("cu_id");
 		cu_email = request.getParameter("cu_email");
+		System.out.println(cu_id);
 		Customer customer = forgetPwdService.find(cu_nickname, cu_id, cu_email);
 		if (customer == null) {
 			result = "no customer";
