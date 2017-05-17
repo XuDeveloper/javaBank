@@ -6,7 +6,7 @@
         <div class="col-sm-6 col-sm-offset-3 ">
         <br>
           <center>
-            <img src="${pageContext.request.contextPath}/Public/images/no.png" > 
+            <img src="${pageContext.request.contextPath}/Public/images/no.jpg" > 
                <br>
             <h2> Time out! </h2>   
             <br>
@@ -21,7 +21,7 @@
         <div class="col-sm-4">
              <div class="row m-t-50">  
              <div class="col-xs-12"> 
-              <span class="signin" data-toggle="modal" data-target="#myModal">  <button name="signin" class="btn btn-success form-control" onClick="window.open('service.jsp','_self')" >Return</button></span>         
+              <span class="signin" data-toggle="modal" data-target="#myModal">  <button name="signin" class="btn btn-success form-control" onClick="window.open('${pageContext.request.contextPath}/User/login.jsp','_self')" >Return</button></span>         
                 </div>
                 </div>                         
             </div>

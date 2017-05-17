@@ -16,6 +16,14 @@ import javax.mail.internet.MimeMessage;
 import com.sun.mail.util.MailSSLSocketFactory;
 
 public class MailUtils {
+	
+	private static String getUserName() {
+		return "javaBank@banking.com";
+	}
+	
+	private static String getPwd() {
+		return "123";
+	}
 
 	public static void sendRegMail(String to, String code) throws Exception {
 		// 1.创建连接对象，连接到邮件服务器
@@ -34,7 +42,7 @@ public class MailUtils {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				// TODO Auto-generated method stub
 				// 会变的！！
-				return new PasswordAuthentication("javaBank@banking.com", "123");
+				return new PasswordAuthentication(getUserName(), getPwd());
 			}
 		});
 
@@ -90,7 +98,7 @@ public class MailUtils {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				// TODO Auto-generated method stub
 				// 会变的！！
-				return new PasswordAuthentication("javaBank@banking.com", "123");
+				return new PasswordAuthentication(getUserName(), getPwd());
 			}
 		});
 
