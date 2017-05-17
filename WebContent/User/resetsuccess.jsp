@@ -25,6 +25,25 @@
 	href="${pageContext.request.contextPath}/Public/vendors/iCheck/css/all.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/Public/css/custom.css">
+   <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-xenon.css"
+	type="text/css" />		
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-atlant.css"
+	type="text/css" />	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/html5.js"></script>	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery-latest.min.js"></script>	
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.modal.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.model.min.js"></script>   	
+	
+	
 </head>
 
 
@@ -40,16 +59,32 @@
 				},
 				async : false,
 				error : function(request) {
-					alert("Connection error");
+					modal({
+                        type: 'alert',
+                        title: 'Error',
+                         text: '<h4>Sorry, Connection error!Please retry.</h4>'
+               }); 
 				},
 				success : function(data) {
 					if (data == "success") {
-						alert("Success!Please login again!");
-						window.open('${pageContext.request.contextPath}/User/login.jsp', '_self')
+						 modal({
+                             type: 'alert',
+                             title: 'Successful',
+                              text: '<h4>Successful!Please login again!</h4>'
+                    });
+						window.open('${pageContext.request.contextPath}/User/login.jsp', '_self');
 					} else if (data == "no customer") {
-						alert("Fail!The account doesn't exist");
+						 modal({
+                             type: 'alert',
+                             title: 'Error',
+                              text: '<h4>Sorry, The account doesnot exist.</h4>'
+                    });
 					} else if (data == "error") {
-						alert("Error!Please retry!");
+						modal({
+	                          type: 'alert',
+	                          title: 'Error',
+	                           text: '<h4>Sorry, Reset error!Please retry.</h4>'
+	                 }); 
 					}
 				}
 			});
@@ -60,20 +95,38 @@
 		var b = document.getElementById("password").value;
 		var c = document.getElementById("repeatpassword");
 		if (b.value = null) {
-			alert("The new password can be empty!");
+			
+			modal({
+                type: 'alert',
+                title: 'Error',
+                 text: '<h4>Sorry,The new password can be empty!</h4>'
+       }); 
+			
 			return false;
 		}
 		if (checkPass(b) < 4) {
-			alert("The complexity of the new password is no enough,it should include the capital capital and small letter、 small letter and number ！");
+			modal({
+                type: 'alert',
+                title: 'Error',
+                 text: '<h4>Sorry,The complexity of the new password is no enough!<p>it should include the capital capital and small letter、 small letter and number ！</h4>'
+       }); 
 			return false;
 		}
 		if (b != c.value) {
-			alert("The two new password is different!");
+			modal({
+                type: 'alert',
+                title: 'Error',
+                 text: '<h4>Sorry,The two new password is different!</h4>'
+       }); 	
 			return false;
 		}
 		if (b === c.value) {
 			if (checkPass(b) < 4) {
-				alert("The complexity of the new password is no enough,it should include the capital capital and small letter、 small letter and number ！");
+				modal({
+	                type: 'alert',
+	                title: 'Error',
+	                 text: '<h4>Sorry,The complexity of the new password is no enough!<p>it should include the capital capital and small letter、 small letter and number ！</h4>'
+	       });
 				return false;
 			}
 			return true;
@@ -149,7 +202,7 @@
 				</div>
 				<div>&nbsp;</div>
 				<div align="right">
-					<a href="login.jsp"><font size="+2" color="#003399">return--></font></a>
+					<a href="${pageContext.request.contextPath}/User/login.jsp"><font size="+2" color="#003399">return--></font></a>
 				</div>
 			</div>
 		</div>
@@ -174,21 +227,5 @@
 			</div>
 		</div>
 	</section>
-	<script
-		src="${pageContext.request.contextPath}/Public/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/vendors/wow/js/wow.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/vendors/iCheck/js/icheck.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/vendors/isotope/js/isotope.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/vendors/jribbble/js/jribbble.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Public/vendors/countup/js/countUp.min.js"></script>
-	<!----------------Page Level JS-------------------->
-	<script src="${pageContext.request.contextPath}/Public/js/custom.js"></script>
 </body>
 </html>

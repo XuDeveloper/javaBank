@@ -27,9 +27,17 @@
     	 var cu_name= document.getElementById("cu_name");
          var cu_pwd= document.getElementById("cu_pwd"); 
          if(cu_name.value == '') {
-        	 alert('Please input account nickname first!');
+        	 modal({
+                 type: 'alert',
+                 title: 'Warning',
+                  text: '<h4> Sorry,please input your Bank Account!</h4>'
+        });   
          } else if(cu_pwd.value == '') {
-        	 alert('Please input password first!');
+        	 modal({
+                 type: 'alert',
+                 title: 'Warning',
+                  text: '<h4> Sorry,please input your password!</h4>'
+        });  
          } else {
         	 // ajax发起请求
    		  	 $.ajax({  
@@ -40,14 +48,24 @@
                      cu_pwd: cu_pwd.value
                  },
                  async: false,  
-                 error: function(request) {  
-                     alert("Connection error");  
+                 error: function(request) { 
+                	 modal({
+                         type: 'alert',
+                         title: 'Warning',
+                          text: '<h4> Sorry,Connection error!</h4>'
+                });  
                  },  
                  success: function(data) {
                	  if(data == "success") {
-               		  window.location.href = "${pageContext.request.contextPath}/User/main.jsp";
+               		  window.location.href = "${pageContext.request.contextPath}/User/onlinebank.jsp";
                	  } else if(data == "no customer"){
-               		  alert("Fail!Wrong account or password!");
+               		  
+               		 modal({
+                         type: 'alert',
+                         title: 'Warning',
+                          text: '<h4> Sorry , Wrong ID number or password!Please retry!</h4>'
+                });  
+               		  
                	  }
                  }  
              });  
@@ -69,16 +87,34 @@
                   },
                   async: true,  
                   error: function(request) {  
-                      alert("Connection error");  
+                	  modal({
+                          type: 'alert',
+                          title: 'Warning',
+                           text: '<h4> Sorry,Connection error!</h4>'
+                 }); 
                   },  
                   success: function(data) {
                 	  if(data == "success") {
-                		  alert("Register successful!We will send you an email to activate!");
-                		  window.location.href = "${pageContext.request.contextPath}/User/main.jsp";
+                		  modal({
+                             type: 'alert',
+                             title: 'Success',
+                             text: '<h4> Register successful!We will send you an email to activate!<p>Please check your mailbox in time!</h4>'
+                     }); 
+              		  window.location.href = "${pageContext.request.contextPath}/User/login.jsp";
                 	  } else if(data == "no customer"){
-                		  alert("Error!The account doesn't exist!");
+                		  modal({
+                              type: 'alert',
+                              title: 'Error',
+                              text: '<h4> Sorry,The account doesnot exist!</h4>'
+                      }); 
+
                 	  } else {
-                		  alert("Error!Please retry!");
+                		  modal({
+                              type: 'alert',
+                              title: 'Error',
+                              text: '<h4> Sorry,Sending mail failed,Please retry!</h4>'
+                      }); 
+                		  
                 	  }
                   }  
               });  
@@ -89,27 +125,57 @@
         var b= document.getElementById("password1").value;
         var c= document.getElementById("repeatpassword"); 
         if($("input[name=cu_nickname]").val() == '') {
-        	alert("The account name can be empty!");
+        	
+        	 modal({
+                 type: 'alert',
+                 title: 'Warning',
+                  text: '<h4> Sorry,The username can not be empty!</h4>'
+        });
+        	
             return false;
         }
         if($("input[name=cu_id]").val() == '') {
-        	alert("The account id can be empty!");
+       	 modal({
+             type: 'alert',
+             title: 'Warning',
+              text: '<h4> Sorry,The ID number id can not be empty!!</h4>'
+    });
+   	
             return false;
         }
-        if($("input[name=cu_email]").val() == '') {
-        	alert("The account email can be empty!");
+
+        if($("input[name=cu_email]").val() == '') {       	
+       	 modal({
+             type: 'alert',
+             title: 'Warning',
+              text: '<h4> Sorry,the eamil address can not be empty!!</h4>'
+    });                	
             return false;
         }
+
         if(b.value=null){ 
-            alert("The new password can be empty!");
+        	modal({
+                type: 'alert',
+                title: 'Warning',
+                 text: '<h4> Sorry,The new password can not be empty!!</h4>'
+       }); 
             return false; 
         } 
+
         if(checkPass(b)<3){ 
-            alert("The password should be at least 6 characters and contains a mixture of lower and upper case letter and digit ！");   
+        	modal({
+                type: 'alert',
+                title: 'Warning',
+                 text: '<h4> Sorry,The password should be at least 6 characters and contains a mixture of lower and upper case letter and digit ！!</h4>'
+       });   
             return false ;   
         } 
         if(b!=c.value){ 
-            alert("The two new password is different!"); 
+        	modal({
+                type: 'alert',
+                title: 'Warning',
+                 text: '<h4> Sorry,The new password can not be different!!</h4>'
+       }); 
             return false; 
         } 
           return true; 
@@ -181,7 +247,7 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                                     <label class="control-label" for="userid"> <img src="${pageContext.request.contextPath}/Public/images/username.png">&nbsp;Banking Account :</label>
                                     <div class="controls">
                                          <input id="cu_name" name="cu_name" class="form-control input-large" type="text"
-                                               placeholder="ID" style="font-size:23px">
+                                               placeholder="Account" style="font-size:23px">
                                     </div>
                                 </div>
                                 <div class="control-group section-top-10">
@@ -258,9 +324,6 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Return</button>
-            </div>
         </div>
     </div>
 </div>
@@ -268,85 +331,14 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
 
 <div class="tp-banner-container rev_slider_wrapper fullwidthbanner-container" data-alias="news-hero72">
     <div class="home_slider">
-        <ul>
-            <li data-index="rs-10" data-transition="fade" data-slotamount="7" class="bg-light"
-                data-easein="Power4.easeInOut" data-delay="5000" data-easeout="Power4.easeInOut" data-masterspeed="2000"
-                data-rotate="0" data-saveperformance="off" data-title="Love it?" data-description="">
-                <img src="${pageContext.request.contextPath}/Public/images/main1.jpg" alt="systemimg" data-kenburns="off" data-bgposition="center center"
-                     data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120"
-                     data-rotatestart="0" data-rotateend="0" data-offsetstart="0 -500" data-bgfit="cover"
-                     data-offsetend="0 500" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                <div class="tp-caption  sfb tp-resizeme" data-x="center"
-                     data-y="120" data-speed="700" data-start="1000" data-easing="Power0.easeInOut"
-                     data-splitin="words"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:60px;font-family: lato">
-                    Welcome TO  Our Bank!
-                </div>
-                  <div class="tp-caption grey_heavy_72 sfr tp-resizeme" data-x="center"
-                     data-y="250" data-speed="700" data-start="1500" data-easing="Power0.easeInOut"
-                     data-splitin="words"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:45px;font-family: lato">
-                   We will offer the best services to you !
-                </div>
-                
-            </li>
-            <li data-transition="Curtain from Middle" data-slotamount="7" data-delay="5000" data-masterspeed="600"
-                class="bg-light">
-
-                <img src="${pageContext.request.contextPath}/Public/images/main3.jpg" alt="girlimg" data-bgposition="right bottom"
-                     data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
-                     data-bgpositionend="left top">
-                <div class="tp-caption grey_heavy_72 sfb tp-resizeme" data-x="center"
-                     data-y="150" data-speed="700" data-start="700" data-easing="Power0.easeInOut"
-                     data-splitin="lines"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:55px;font-family: lato">
-                   This Is A Reliable Bank!
-                </div>
-                                <div class="tp-caption grey_heavy_72 sfr tp-resizeme" data-x="center"
-                     data-y="250" data-speed="700" data-start="1500" data-easing="Power0.easeInOut"
-                     data-splitin="words"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:45px;font-family: lato">
-                   Security、Responsibility and High Quality!
-                </div> 
-            </li>
-            <!---->
-            <li data-index="rs-82" data-transition="fade" data-slotamount="7" data-masterspeed="500" data-delay="5000"
-                data-saveperformance="on"
-                data-title="Intro Slide" data-bgfit="cover">
-                <img src="${pageContext.request.contextPath}/Public/images/main2.jpg" alt="girlimg" data-bgposition="right bottom"
-                     data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
-                     data-bgpositionend="left top">
-
-                <div class="tp-caption grey_heavy_72 sfl tp-resizeme" data-x="center"
-                     data-y="150" data-speed="700" data-start="700" data-easing="Power0.easeInOut"
-                     data-splitin="words"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:70px;font-family: lato">
-                     This Is A  Good Bank!
-                </div>
-                <div class="tp-caption grey_heavy_72 sfr tp-resizeme" data-x="center"
-                     data-y="250" data-speed="700" data-start="1500" data-easing="Power0.easeInOut"
-                     data-splitin="words"
-                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:45px;font-family: lato">
-                    Best Corporate Company
-                </div>
-               
-            </li>
-        </ul>
+                <img src="${pageContext.request.contextPath}/Public/images/main11.jpg"  style="width:100%;height:100%:margin-left:0px">      
     </div>
 </div>
 
 <section class="copy-rights">
     <div class="container ">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 section-top-15">
-                
-
+            <div class="col-xs-12 col-sm-6 section-top-15">               
             </div>
             <div class="col-xs-12 col-sm-6 text-right section-top-15">
 
@@ -365,6 +357,23 @@ if(pass.match(/[^a-zA-Z0-9]+/)){
 <script src="${pageContext.request.contextPath}/Public/vendors/jribbble/js/jribbble.min.js"></script>
 <!----------------------page Level Js-------------------------->
 <script src="${pageContext.request.contextPath}/Public/js/custom.js"></script>
-
+   <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-xenon.css"
+	type="text/css" />		
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/Public/css/jquery.modal.theme-atlant.css"
+	type="text/css" />	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/html5.js"></script>	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery-latest.min.js"></script>	
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.modal.js"></script>
+	<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Public/js/jquery.model.min.js"></script>   
+    
 </body>
 </html>

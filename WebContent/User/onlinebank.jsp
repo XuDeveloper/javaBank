@@ -1,4 +1,5 @@
 
+<%@page import="com.xu.entity.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +27,11 @@
 <!----------------Page Level JS-------------------->
 <script src="${pageContext.request.contextPath}/Public/js/custom.js"></script>
 </head>
+
+<%
+   Customer customer= (Customer)session.getAttribute("customer");
+%>
+
 <body background="${pageContext.request.contextPath}/Public/images/bg.jpg">
 <div class="tp-header">
     <div class="container">
@@ -34,7 +40,7 @@
                
             </div> 
             <div class="col-xs-5 col-md-6" align="right">
-               <font color="#999999">username</font> &nbsp;
+               <font color="#999999"><%=customer.getCu_nickname() %></font> &nbsp;
                <a href="service.jsp" class="hvr-underline-from-center"><font color="#999999">Logout</font></a>
             </div>
         </div>
